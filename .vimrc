@@ -145,6 +145,7 @@ vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
 nmap <C-c><C-c> vip<C-c><C-c>
 
 nmap <C-c><C-l> :wa <bar> VimuxRunLastCommand<CR>
+nmap <silent> <C-c><C-f> :wa <bar> VimuxRunCommand "mix surface.format"<CR>
 
 " Test mappings
 " these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
