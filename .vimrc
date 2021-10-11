@@ -23,12 +23,17 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Fzf has an integration with ripgrep to search git files using command :Rg
 Plug 'jremmen/vim-ripgrep'
 
+"Global find and replace 
+Plug 'brooth/far.vim'
+
 "Oliver's: Tsx/Jsx related
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+
+Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -219,6 +224,23 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 nmap <silent> <leader>f :CocAction<cr>
+
+function! GetRegisters()
+    redir => cout
+    silent registers
+    redir END
+    return split(cout, "\n")[1:]
+endfunction
+function! UseRegister(line)
+    let var_a = getreg(a:line[1], 1, 1)
+    " let var_amode = getregtype(a:line[1])
+    " call setreg('"', var_a, var_amode)
+    exe 'normal! o'.var_a[0]
+endfunction
+command! Registers call fzf#run(fzf#wrap({
+            \ 'source': GetRegisters(),
+            \ 'sink': function('UseRegister')}))
+
 
 function! RandomColorScheme()
   let mycolors = split(globpath(&rtp,"colors/*.vim"),"\n")
