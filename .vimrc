@@ -108,7 +108,6 @@ set laststatus=2
 set ruler
 set textwidth=80
 set colorcolumn=+1
-set relativenumber
 set number
 set undodir=~/.vim/undodir
 set undofile

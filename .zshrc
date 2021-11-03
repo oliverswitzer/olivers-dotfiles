@@ -143,3 +143,9 @@ alias sshunsafe="ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyCheck
 
 unfunction work_in_progress
 
+function killall {
+  for p in `ps aux | grep $1 | awk '{print $2}'`; do
+    echo "Force killing $p"
+    kill -9 $p
+  done
+}
