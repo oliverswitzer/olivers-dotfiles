@@ -18,12 +18,33 @@ symlink_dotfile() {
   ln -sf $repo_dotfile $dest_dotfile
 }
 
+function install_brew_dep() {
+  formula=$1
+
+  if brew ls --versions $2 $formula > /dev/null; then
+    echo "✅ '$formula' is already installed"
+  else
+    echo "'$formula' is not installed"
+    echo "⏳ Installing '$formula'"
+    brew install $2 $formula
+  fi
+}
+
+
+# Install brew dpes
+install_brew_dep 'neovim'
+install_brew_dep 'tmux'
+install_brew_dep 'upterm'
+install_brew_dep 'docker' --cask
+
+mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Copy over dotfiles
 symlink_dotfile '.zshrc' $HOME
 symlink_dotfile '.vimrc' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 
+# Coc Config
 [ -d ~/.config/nvim/ ] \
   && symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
-
-mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
