@@ -1,0 +1,32 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "elixir",
+    "typescriptreact",
+    "typescript",
+    "react",
+    "eelixir",
+    "javascript",
+    "javascriptreact",
+    "html",
+    "css"
+  ],
+  "typescript.format.enabled": true,
+  "signature.enable": true,
+  "signature.target": "float",
+  "diagnostic-languageserver.filetypes": {
+    "elixir": ["mix_credo", "mix_credo_compile"],
+    "eelixir": ["mix_credo", "mix_credo_compile"],
+    "typescript": "eslint",
+    "javascript": "eslint"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "eelixir": "html",
+    "elixir": "html",
+    "jsx": "javascriptreact",
+    "tsx": "typescriptreact"
+  },
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.showExpandedAbbreviation": "always"
+}
+

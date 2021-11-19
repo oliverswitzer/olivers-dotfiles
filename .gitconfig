@@ -1,0 +1,39 @@
+[core]
+	editor = /usr/local/bin/vim
+[transfer]
+	fsckobjects = true
+[init]
+	templateDir = /Users/oliverswitzer/.git_templates
+[alias]
+	gst = git
+	st = status
+	di = diff
+	co = checkout
+	ci = commit
+	cp = cherry-pick
+	br = branch
+	sta = stash
+	llog = log --date=local
+	flog = log --pretty=fuller --decorate
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lol = log --graph --decorate --oneline
+	lola = log --graph --decorate --oneline --all
+	blog = log origin/master... --left-right
+	ds = diff --staged
+	fixup = commit --fixup
+	squash = commit --squash
+	amendit = commit --amend --no-edit
+	unstage = reset HEAD
+	rum = rebase master@{u}
+	gst = git
+	gst = git
+	gst = git
+[user]
+	name = Oliver Switzer
+	email = oliver@geometer.io
+[pull]
+	ff = only
+[push]
+	default = current
+[http]
+	postBuffer = 100000000
