@@ -116,30 +116,36 @@ p10kcolors() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
+export PROJECT_FOLDER="$HOME/workspace"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+source "$HOME/workspace/dotfiles/dotfiles/zshrc.include"
+
 # This helps preserver history in Elixir's iex
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 2097152 -kernel shell_history_path '\"$HOME/.iex-history\"'"
+
 export CLOUDSDK_PYTHON="$(brew --prefix)/opt/python@3.8/libexec/bin/python"
 
 # Geometer
 export GCP_ORGANIZATION_ID=717821974255
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+alias k="kubectl"
 
-export PROJECT_FOLDER="$HOME/workspace"
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
-
-source "$HOME/workspace/dotfiles/dotfiles/zshrc.include"
-
+# Editor
 alias vim="nvim"
 alias vi="nvim"
 alias vmerge="git mergetool -t vimdiff"
+alias watch="watch "
+
+# Kohort
+alias bc="./run-test ./bin/checks.sh"
 alias dcu="docker-compose up"
 alias dcr="docker-compose restart"
 alias dcd="docker-compose down"
-alias k="kubectl"
-alias watch="watch "
 
+# Misc
 alias sshunsafe="ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\""
+alias clearswap="sudo pkill -HUP -u _windowserver"
 
 unfunction work_in_progress
 
