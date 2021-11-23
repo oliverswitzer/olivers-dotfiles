@@ -11,7 +11,7 @@ symlink_dotfile() {
 
   if test -f "$dest_dotfile"; then
     echo "⚠️  $dest_dotfile already exists, copying it to $file_name.bak"
-    cp -n $dest_dotfile{,.bak}
+    cp $dest_dotfile{,.bak}
   fi
 
   echo "Symlinking $repo_dotfile to $dest_dotfile..."
@@ -26,7 +26,7 @@ function install_brew_dep() {
   else
     echo "'$formula' is not installed"
     echo "⏳ Installing '$formula'"
-    brew install $2 $formula
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install $2 $formula
   fi
 }
 
@@ -46,5 +46,6 @@ symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 
 # Coc Config
-[ -d ~/.config/nvim/ ] \
-  && symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
+mkdir -p ~/.config/nvim
+symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
+symlink_dotfile 'init.vim' $HOME/.config/nvim
