@@ -35,6 +35,15 @@ function install_brew_dep() {
 
 ## Brew Dependencies
 
+which -s brew
+if [[ $? != 0 ]] ; then
+  echo "Homebrew not installed. Installing homebrew..."
+  # Install Homebrew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  brew update
+fi
+
 #### Binaries
 
 install_brew_dep 'neovim'
