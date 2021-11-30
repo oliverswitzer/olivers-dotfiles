@@ -84,6 +84,8 @@ install_brew_dep 'spotify' --cask
 ## Dotfiles
 
 symlink_dotfile '.zshrc' $HOME
+symlink_dotfile '.zprofile' $HOME
+symlink_dotfile '.tool-versions' $HOME
 symlink_dotfile '.vimrc' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
