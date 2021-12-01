@@ -89,6 +89,7 @@ symlink_dotfile '.tool-versions' $HOME
 symlink_dotfile '.vimrc' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
+symlink_dotfile '.p10k.zsh' $HOME
 
 mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
