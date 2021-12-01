@@ -68,6 +68,11 @@ install_brew_dep 'upterm'
 install_brew_dep 'postgresql'
 install_brew_dep 'asdf'
 
+asdf plugin add erlang
+asdf plugin add golang
+asdf plugin add nodejs
+asdf plugin add postgres
+asdf plugin add python
 asdf install
 
 # Install oh-my-zsh
