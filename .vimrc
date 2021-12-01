@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'KabbAmine/vCoolor.vim'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Need to install ripgrep for this to work: `brew install ripgrep`
 " Fzf has an integration with ripgrep to search git files using command :Rg
 Plug 'jremmen/vim-ripgrep'

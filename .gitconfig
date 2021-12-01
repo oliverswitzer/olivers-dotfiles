@@ -1,9 +1,10 @@
 [core]
-	editor = /usr/local/bin/vim
+	editor = nvim
 [transfer]
 	fsckobjects = true
 [init]
 	templateDir = /Users/oliverswitzer/.git_templates
+	defaultBranch = main
 [alias]
 	gst = git
 	st = status

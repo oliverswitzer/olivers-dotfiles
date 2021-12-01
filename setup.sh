@@ -1,4 +1,4 @@
-set -e
+set -x
 
 repo_dir=$(pwd)
 
@@ -32,6 +32,22 @@ function install_brew_dep() {
   fi
 }
 
+## Dotfiles
+
+symlink_dotfile '.zshrc' $HOME
+symlink_dotfile '.zprofile' $HOME
+symlink_dotfile '.tool-versions' $HOME
+symlink_dotfile '.vimrc' $HOME
+symlink_dotfile '.tmux.conf' $HOME
+symlink_dotfile '.gitconfig' $HOME
+symlink_dotfile '.p10k.zsh' $HOME
+
+mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Coc Config
+mkdir -p ~/.config/nvim
+symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
+symlink_dotfile 'init.vim' $HOME/.config/nvim
 
 ## Brew Dependencies
 
@@ -51,6 +67,8 @@ install_brew_dep 'tmux'
 install_brew_dep 'upterm'
 install_brew_dep 'postgresql'
 install_brew_dep 'asdf'
+
+asdf install
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -80,20 +98,3 @@ install_brew_dep 'shiftit' --cask
 install_brew_dep 'flux' --cask
 install_brew_dep 'vlc' --cask
 install_brew_dep 'spotify' --cask
-
-## Dotfiles
-
-symlink_dotfile '.zshrc' $HOME
-symlink_dotfile '.zprofile' $HOME
-symlink_dotfile '.tool-versions' $HOME
-symlink_dotfile '.vimrc' $HOME
-symlink_dotfile '.tmux.conf' $HOME
-symlink_dotfile '.gitconfig' $HOME
-symlink_dotfile '.p10k.zsh' $HOME
-
-mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Coc Config
-mkdir -p ~/.config/nvim
-symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
-symlink_dotfile 'init.vim' $HOME/.config/nvim
