@@ -67,6 +67,7 @@ install_brew_dep 'tmux'
 install_brew_dep 'upterm'
 install_brew_dep 'postgresql'
 install_brew_dep 'asdf'
+install_brew_dep 'gpg2'
 
 asdf plugin add erlang
 asdf plugin add golang
@@ -85,6 +86,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 # Work-related
 install_brew_dep 'docker' --cask
+install_brew_dep 'google-chrome' --cask
 install_brew_dep 'dash' --cask
 install_brew_dep 'slack' --cask
 install_brew_dep 'tandem' --cask
@@ -93,6 +95,7 @@ install_brew_dep '1password' --cask
 install_brew_dep 'postman' --cask
 install_brew_dep 'zoom' --cask
 install_brew_dep 'visual-studio-code' --cask
+install_brew_dep 'google-cloud-sdk' --cask
 
 # Utilities
 install_brew_dep 'stats' --cask
