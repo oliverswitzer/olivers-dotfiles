@@ -1,4 +1,4 @@
-set -x
+set -e
 
 repo_dir=$(pwd)
 
@@ -51,6 +51,8 @@ symlink_dotfile 'init.vim' $HOME/.config/nvim
 
 ## Brew Dependencies
 
+set +e
+
 which -s brew
 if [[ $? != 0 ]] ; then
   echo "Homebrew not installed. Installing homebrew..."
@@ -60,6 +62,8 @@ else
   brew update
 fi
 
+set -e
+
 #### Binaries
 
 install_brew_dep 'neovim'
@@ -68,6 +72,7 @@ install_brew_dep 'upterm'
 install_brew_dep 'postgresql'
 install_brew_dep 'asdf'
 install_brew_dep 'gpg2'
+install_brew_dep 'direnv'
 
 asdf plugin add erlang
 asdf plugin add golang
