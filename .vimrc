@@ -15,15 +15,21 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "Oliver's plugins
+
+" Used to quickly surround visual selections with html tags or quotes
 Plug 'tpope/vim-surround'
+
+" Multi-selection using Ctrl + N
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+" Color pallete selector
 Plug 'KabbAmine/vCoolor.vim'
-" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
 " Need to install ripgrep for this to work: `brew install ripgrep`
 " Fzf has an integration with ripgrep to search git files using command :Rg
 Plug 'jremmen/vim-ripgrep'
 
-"Global find and replace 
+" Global find and replace 
 Plug 'brooth/far.vim'
 
 "Oliver's: Tsx/Jsx related
@@ -33,10 +39,12 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
+" ========================================
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+
 "Plug 'dense-analysis/ale'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'gleam-lang/gleam.vim'
@@ -44,29 +52,34 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/vimux'
 Plug 'tpope/vim-fugitive'
 
-" Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-abolish'
+
+" ==== Coc plugs ==== 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'elixir-lsp/coc-elixir', {'do': 'npm install && npm run prepack'}
 Plug 'iamcco/coc-diagnostic', {'do': 'npm install --force'}
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': '0.5-compat'}
-" Plug 'neoclide/coc-highlight', {'do': 'npm install --force'}
+Plug 'elixir-lsp/coc-elixir', {'do': 'npm install && npm run prepack'}
 Plug 'neoclide/coc-git', {'do': 'npm install --force'}
+Plug 'fannheyward/coc-marketplace', {'do': 'npm install --force'}
+Plug 'neoclide/coc-eslint', {'do': 'npm install --force'}
+Plug 'neoclide/coc-tsserver', {'do': 'npm install --force'}
+Plug 'neoclide/coc-prettier', {'do': 'npm install --force'}
+Plug 'iamcco/coc-tailwindcss',  {'do': 'npm install --frozen-lockfile && npm run build'}
+" Plug 'neoclide/coc-highlight', {'do': 'npm install --force'}
 " Plug 'neoclide/coc-lists', {'do': 'npm install --force'}
+" Plug 'neoclide/coc-yank', {'do': 'npm install --force'}
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': '0.5-compat'}
 " Plug 'leafgarland/typescript-vim'
 " Plug 'peitalin/vim-jsx-typescript'
-" Plug 'neoclide/coc-yank', {'do': 'npm install --force'}
-" Plug 'fannheyward/coc-marketplace', {'do': 'npm install --force'}
-Plug 'neoclide/coc-prettier', {'do': 'npm install --force'}
-Plug 'neoclide/coc-eslint', {'do': 'npm install --force'}
-" Plug 'neoclide/coc-tsserver', {'do': 'npm install --force'}
+
+" Helps with directory navigation using - to go up and enter to go down
 Plug 'tpope/vim-vinegar'
+
 Plug 'tpope/vim-commentary'
 Plug 'chriskempson/base16-vim'
 " Plug 'itchyny/lightline.vim'
 " Plug 'tpope/vim-unimpaired'
 Plug 'vim-test/vim-test'
-Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
 call plug#end()
 
