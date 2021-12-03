@@ -51,7 +51,7 @@
 			<key>db_connection</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-14T14:59:45Z</date>
+				<date>2021-12-03T00:41:17Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -65,7 +65,7 @@
 			<key>ecto</key>
 			<dict>
 				<key>date</key>
-				<date>2021-09-01T15:01:38Z</date>
+				<date>2021-12-03T00:41:19Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -79,7 +79,7 @@
 			<key>ecto_sql</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-14T14:59:47Z</date>
+				<date>2021-12-03T00:41:22Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -93,7 +93,7 @@
 			<key>ex_twilio</key>
 			<dict>
 				<key>date</key>
-				<date>2021-06-07T15:09:14Z</date>
+				<date>2021-12-03T00:41:22Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -107,7 +107,7 @@
 			<key>floki</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-26T20:51:45Z</date>
+				<date>2021-12-03T00:41:27Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -121,7 +121,7 @@
 			<key>guardian</key>
 			<dict>
 				<key>date</key>
-				<date>2021-09-01T15:01:37Z</date>
+				<date>2021-12-03T00:41:25Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -135,7 +135,7 @@
 			<key>hammox</key>
 			<dict>
 				<key>date</key>
-				<date>2021-03-28T19:50:16Z</date>
+				<date>2021-12-03T00:41:09Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -149,7 +149,7 @@
 			<key>hound</key>
 			<dict>
 				<key>date</key>
-				<date>2021-06-13T23:07:38Z</date>
+				<date>2021-12-03T00:41:23Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -163,7 +163,7 @@
 			<key>httpoison</key>
 			<dict>
 				<key>date</key>
-				<date>2021-03-29T00:06:24Z</date>
+				<date>2021-12-03T00:41:17Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -177,7 +177,7 @@
 			<key>jason</key>
 			<dict>
 				<key>date</key>
-				<date>2021-06-28T22:16:57Z</date>
+				<date>2021-12-03T00:41:10Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -191,7 +191,7 @@
 			<key>mox</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-15T23:55:23Z</date>
+				<date>2021-12-03T00:41:07Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -205,7 +205,7 @@
 			<key>opentelemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-14T14:59:45Z</date>
+				<date>2021-12-03T00:41:15Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -219,7 +219,7 @@
 			<key>opentelemetry_api</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-14T14:59:45Z</date>
+				<date>2021-12-03T00:41:21Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -233,7 +233,7 @@
 			<key>phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-11T15:55:26Z</date>
+				<date>2021-12-03T00:41:14Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -247,7 +247,7 @@
 			<key>phoenix_client</key>
 			<dict>
 				<key>date</key>
-				<date>2021-01-25T19:23:27Z</date>
+				<date>2021-12-03T00:41:15Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -261,7 +261,7 @@
 			<key>phoenix_ecto</key>
 			<dict>
 				<key>date</key>
-				<date>2021-09-01T15:01:37Z</date>
+				<date>2021-12-03T00:41:07Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -275,7 +275,7 @@
 			<key>phoenix_html</key>
 			<dict>
 				<key>date</key>
-				<date>2021-10-26T20:51:44Z</date>
+				<date>2021-12-03T00:41:10Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -289,7 +289,7 @@
 			<key>phoenix_live_view</key>
 			<dict>
 				<key>date</key>
-				<date>2021-11-04T14:31:12Z</date>
+				<date>2021-12-03T00:41:19Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -303,7 +303,7 @@
 			<key>plug</key>
 			<dict>
 				<key>date</key>
-				<date>2021-08-02T14:37:36Z</date>
+				<date>2021-12-03T00:41:19Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -317,7 +317,7 @@
 			<key>poison</key>
 			<dict>
 				<key>date</key>
-				<date>2021-07-30T17:15:14Z</date>
+				<date>2021-12-03T00:41:24Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -331,7 +331,7 @@
 			<key>telemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2021-07-03T20:57:25Z</date>
+				<date>2021-12-03T00:41:21Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -345,7 +345,7 @@
 			<key>telemetry_metrics</key>
 			<dict>
 				<key>date</key>
-				<date>2021-07-03T20:57:25Z</date>
+				<date>2021-12-03T00:41:07Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -359,7 +359,7 @@
 			<key>temple</key>
 			<dict>
 				<key>date</key>
-				<date>2021-09-01T15:01:36Z</date>
+				<date>2021-12-03T00:41:25Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -373,7 +373,7 @@
 			<key>timex</key>
 			<dict>
 				<key>date</key>
-				<date>2021-08-03T15:08:50Z</date>
+				<date>2021-12-03T00:41:13Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -387,7 +387,7 @@
 			<key>ueberauth</key>
 			<dict>
 				<key>date</key>
-				<date>2021-06-30T15:18:02Z</date>
+				<date>2021-12-03T00:41:12Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -401,7 +401,7 @@
 			<key>ueberauth_google</key>
 			<dict>
 				<key>date</key>
-				<date>2021-07-17T20:28:41Z</date>
+				<date>2021-12-03T00:41:25Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -415,7 +415,7 @@
 			<key>wallaby</key>
 			<dict>
 				<key>date</key>
-				<date>2021-09-24T01:25:37Z</date>
+				<date>2021-12-03T00:41:24Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -486,22 +486,22 @@
 			<key>http://kapeli.com/feeds/Arduino.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-02-16T18:28:36Z</date>
+				<date>2021-12-03T00:41:16Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Bash.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-02-16T18:29:27Z</date>
+				<date>2021-12-03T00:41:08Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/CSS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-02-16T18:28:18Z</date>
+				<date>2021-12-03T00:41:12Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Docker.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-02-16T18:28:13Z</date>
+				<date>2021-12-03T00:41:12Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Elixir.xml</key>
 			<dict>
@@ -516,52 +516,52 @@
 			<key>http://kapeli.com/feeds/HTML.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:19Z</date>
+				<date>2021-12-03T00:41:15Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/JavaScript.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-03-16T21:50:33Z</date>
+				<date>2021-12-03T00:41:23Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Markdown.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:47:16Z</date>
+				<date>2021-12-03T00:41:14Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/NodeJS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:31Z</date>
+				<date>2021-12-03T00:41:14Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/PostgreSQL.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:36Z</date>
+				<date>2021-12-03T00:41:18Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/React.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:41Z</date>
+				<date>2021-12-03T00:41:17Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Ruby_on_Rails_5.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:49Z</date>
+				<date>2021-12-03T00:41:19Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Ruby_on_Rails_6.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:50Z</date>
+				<date>2021-12-03T00:41:21Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/TypeScript.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:48:59Z</date>
+				<date>2021-12-03T00:41:18Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Vim.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-10-29T15:49:03Z</date>
+				<date>2021-12-03T00:41:20Z</date>
 			</dict>
 		</dict>
 		<key>uninstalled</key>
