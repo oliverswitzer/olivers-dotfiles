@@ -75,6 +75,7 @@ install_brew_dep 'asdf'
 install_brew_dep 'gpg2'
 install_brew_dep 'direnv'
 install_brew_dep 'the_silver_searcher'
+install_brew_dep 'pulumi'
 
 asdf plugin add erlang
 asdf plugin add golang
