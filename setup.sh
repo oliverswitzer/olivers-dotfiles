@@ -68,7 +68,7 @@ set -e
 
 install_brew_dep 'neovim'
 install_brew_dep 'tmux'
-install_brew_dep 'upterm'
+install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
 install_brew_dep 'postgresql'
 install_brew_dep 'asdf'
