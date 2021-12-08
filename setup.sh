@@ -78,11 +78,13 @@ install_brew_dep 'the_silver_searcher'
 install_brew_dep 'gh'
 install_brew_dep 'pulumi'
 
+# Necessary for kubectl to work (version is referenced in ~/.zshrc)
+install_brew_dep 'python@3.8'
+
 asdf plugin add erlang
 asdf plugin add golang
 asdf plugin add nodejs
 asdf plugin add postgres
-asdf plugin add python
 asdf install
 
 # Install oh-my-zsh
