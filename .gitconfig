@@ -37,3 +37,7 @@
 	default = current
 [http]
 	postBuffer = 100000000
+[include]
+	path = ~/.gitconfig-geometer
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

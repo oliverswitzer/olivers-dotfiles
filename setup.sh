@@ -81,17 +81,44 @@ install_brew_dep 'pulumi'
 # Necessary for kubectl to work (version is referenced in ~/.zshrc)
 install_brew_dep 'python@3.8'
 
+set +e
+echo "Installing asdf plugins"
 asdf plugin add erlang
 asdf plugin add golang
 asdf plugin add nodejs
 asdf plugin add postgres
+asdf plugin add elixir 
 asdf install
+set -e
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [[ ! -d ~/.oh-my-zsh ]]; then
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install oh-my-zsh plugin for terminal UI: powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  # Install oh-my-zsh plugin for terminal UI: powerlevel10k
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+# Install elixir-ls
+if [[ ! -d ~/.elixir-ls ]]; then
+  echo "Downloading elixir-ls 0.7.0 into $HOME/.elixir-ls" 
+  mkdir -p ~/.elixir-ls
+  git clone git@github.com:elixir-lsp/elixir-ls.git ~/.elixir-ls
+fi
+
+echo "🛠 Building a release for elixir-s..."
+pushd ~/.elixir-ls && mkdir -p rel
+latest_commit=$(git describe --tags `git rev-list --tags --max-count=1`)
+
+git checkout $latest_commit
+mix deps.get && mix compile
+mix elixir_ls.release -o rel
+
+echo "Copying elixir_ls release into ~/.vim/plugged/coc-elixir/els-release..."
+mkdir -p ~/.vim/plugged/coc-elixir/els-release
+cp -R rel/* ~/.vim/plugged/coc-elixir/els-release/
+popd
 
 #### Applications
 
