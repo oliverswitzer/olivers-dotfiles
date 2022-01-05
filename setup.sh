@@ -32,6 +32,21 @@ function install_brew_dep() {
   fi
 }
 
+function install_tmux() {
+  mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+  # To install tmux plugins you need to start a temporary tmux session...
+
+  # start a server but don't attach to it
+  tmux start-server
+  # create a new session but don't attach to it either
+  tmux new-session -d
+  # install the plugins
+  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+  # killing the server is not required, I guess
+  tmux kill-server
+}
+
 ## Dotfiles
 
 symlink_dotfile '.zshrc' $HOME
@@ -42,7 +57,7 @@ symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
 
-mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+install_tmux
 
 # Coc Config
 mkdir -p ~/.config/nvim
