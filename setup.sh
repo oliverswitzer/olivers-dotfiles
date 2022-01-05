@@ -78,6 +78,9 @@ install_brew_dep 'the_silver_searcher'
 install_brew_dep 'gh'
 install_brew_dep 'pulumi'
 
+brew tap heroku/brew
+install_brew_dep 'heroku'
+
 # Necessary for kubectl to work (version is referenced in ~/.zshrc)
 install_brew_dep 'python@3.8'
 
