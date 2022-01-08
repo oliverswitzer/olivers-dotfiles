@@ -132,6 +132,20 @@
 					<string>guardian</string>
 				</dict>
 			</dict>
+			<key>gun</key>
+			<dict>
+				<key>date</key>
+				<date>2022-01-05T18:05:02Z</date>
+				<key>entry</key>
+				<dict>
+					<key>name</key>
+					<string>gun</string>
+					<key>platform</key>
+					<string>hex</string>
+					<key>uniqueIdentifier</key>
+					<string>gun</string>
+				</dict>
+			</dict>
 			<key>hammox</key>
 			<dict>
 				<key>date</key>
@@ -177,7 +191,7 @@
 			<key>jason</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:10Z</date>
+				<date>2022-01-05T17:51:57Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -205,7 +219,7 @@
 			<key>opentelemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:15Z</date>
+				<date>2022-01-05T17:51:56Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -219,7 +233,7 @@
 			<key>opentelemetry_api</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:21Z</date>
+				<date>2022-01-05T17:51:58Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -233,7 +247,7 @@
 			<key>phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:14Z</date>
+				<date>2022-01-05T17:51:57Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -275,7 +289,7 @@
 			<key>phoenix_html</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:10Z</date>
+				<date>2022-01-05T17:51:56Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>

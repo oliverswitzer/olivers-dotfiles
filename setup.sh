@@ -92,7 +92,6 @@ install_brew_dep 'direnv'
 install_brew_dep 'the_silver_searcher'
 install_brew_dep 'gh'
 install_brew_dep 'pulumi'
-
 brew tap heroku/brew
 install_brew_dep 'heroku'
 
@@ -152,6 +151,8 @@ install_brew_dep 'postman' --cask
 install_brew_dep 'zoom' --cask
 install_brew_dep 'visual-studio-code' --cask
 install_brew_dep 'google-cloud-sdk' --cask
+install_brew_dep 'intellij-idea-ce' --cask
+install_brew_dep 'postgres-unofficial' --cask # https://postgresapp.com/
 
 # Utilities
 install_brew_dep 'stats' --cask
