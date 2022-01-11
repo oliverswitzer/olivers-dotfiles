@@ -52,7 +52,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/vimux'
 Plug 'tpope/vim-fugitive'
 
-" Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
+
+" Following three plugins are for quick navigation between elixir test and src
+" files. See https://github.com/andyl/vim-projectionist-elixir
+Plug 'tpope/vim-projectionist'
+Plug 'c-brenn/fuzzy-projectionist.vim'
+Plug 'andyl/vim-projectionist-elixir'
+
 
 " ==== Coc plugs ==== 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -155,6 +162,10 @@ function! VimuxSlime()
   call VimuxSendText(@v)
   call VimuxSendKeys("Enter")
 endfunction
+
+" vim-projectionist: Toggle between test and src files in Elixir
+nnoremap <Leader>gt :A<CR>
+nnoremap <Leader>gv :AV<CR>
 
  " If text is selected, save it in the v buffer and send that buffer it to tmux
 vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
