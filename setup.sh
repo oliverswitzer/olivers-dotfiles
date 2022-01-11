@@ -153,6 +153,7 @@ install_brew_dep 'visual-studio-code' --cask
 install_brew_dep 'google-cloud-sdk' --cask
 install_brew_dep 'intellij-idea-ce' --cask
 install_brew_dep 'postgres-unofficial' --cask # https://postgresapp.com/
+install_brew_dep 'macdown' --cask # https://postgresapp.com/
 
 # Utilities
 install_brew_dep 'stats' --cask
