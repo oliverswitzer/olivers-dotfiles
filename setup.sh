@@ -47,7 +47,7 @@ function install_tmux() {
   tmux kill-server
 }
 
-## Dotfiles
+# Dotfiles & Vim
 
 symlink_dotfile '.zshrc' $HOME
 symlink_dotfile '.zprofile' $HOME
@@ -59,12 +59,35 @@ symlink_dotfile '.p10k.zsh' $HOME
 
 install_tmux
 
-# Coc Config
+## Coc Config
 mkdir -p ~/.config/nvim
 symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
 symlink_dotfile 'init.vim' $HOME/.config/nvim
 
-## Brew Dependencies
+## Install Vim plugins
+install_brew_dep 'neovim'
+nvim +'PlugInstall --sync' +qa
+
+## Install oh-my-zsh
+if [[ ! -d ~/.oh-my-zsh ]]; then
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  # Install oh-my-zsh plugin for terminal UI: powerlevel10k
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+## Install elixir-ls release
+if [[ ! -d ~/.vim/plugged/coc-elixir/els-release ]]; then
+  echo "Downloading elixir-ls into $HOME/.elixir-ls" 
+  # Note that this release is hardcoded as 0.9.0 because I couldn't figure out
+  # how to download the latest release via Github urls
+  curl -L  https://github.com/elixir-lsp/elixir-ls/releases/download/v0.9.0/elixir-ls.zip
+  mkdir -p ~/.vim/plugged/coc-elixir/els-release 
+  unzip elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release
+fi
+
+# Brew Dependencies
 
 set +e
 
@@ -79,9 +102,8 @@ fi
 
 set -e
 
-#### Binaries
+## Brew binaries
 
-install_brew_dep 'neovim'
 install_brew_dep 'tmux'
 install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
@@ -108,34 +130,6 @@ asdf plugin add elixir
 asdf install
 set -e
 
-# Install oh-my-zsh
-if [[ ! -d ~/.oh-my-zsh ]]; then
-  echo "Installing oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-  # Install oh-my-zsh plugin for terminal UI: powerlevel10k
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-fi
-
-# Install elixir-ls
-if [[ ! -d ~/.elixir-ls ]]; then
-  echo "Downloading elixir-ls 0.7.0 into $HOME/.elixir-ls" 
-  mkdir -p ~/.elixir-ls
-  git clone git@github.com:elixir-lsp/elixir-ls.git ~/.elixir-ls
-fi
-
-echo "🛠 Building a release for elixir-s..."
-pushd ~/.elixir-ls && mkdir -p rel
-latest_commit=$(git describe --tags `git rev-list --tags --max-count=1`)
-
-git checkout $latest_commit
-mix deps.get && mix compile
-mix elixir_ls.release -o rel
-
-echo "Copying elixir_ls release into ~/.vim/plugged/coc-elixir/els-release..."
-mkdir -p ~/.vim/plugged/coc-elixir/els-release
-cp -R rel/* ~/.vim/plugged/coc-elixir/els-release/
-popd
 
 #### Applications
 

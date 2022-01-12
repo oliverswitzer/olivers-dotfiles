@@ -55,7 +55,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 
 " Following three plugins are for quick navigation between elixir test and src
-" files. See https://github.com/andyl/vim-projectionist-elixir
+" files. See https://github.com/andyl/vim-projectionist-elixir. Tag: go to test
 Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/fuzzy-projectionist.vim'
 Plug 'andyl/vim-projectionist-elixir'
