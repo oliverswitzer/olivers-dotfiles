@@ -52,6 +52,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/vimux'
 Plug 'tpope/vim-fugitive'
 
+"Most recently used... open with :MRU
+
+Plug 'yegappan/mru'
 Plug 'tpope/vim-abolish'
 
 " Following three plugins are for quick navigation between elixir test and src
@@ -150,6 +153,7 @@ map 0 ^
 
 "nmap <C-p> :GFiles<cr>
 nnoremap <silent> gst :GFiles?<CR>
+nnoremap <leader>ru :MRU<CR>
 
 let mapleader=","
 nmap <leader>l :so $MYVIMRC<cr>
