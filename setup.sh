@@ -108,7 +108,12 @@ install_brew_dep 'tmux'
 install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
 install_brew_dep 'postgresql'
-install_brew_dep 'chromedriver'
+install_brew_dep 'chromedriver' --cask
+
+# Unquarantine chromedriver because Apple hates Google
+chromedriver_binary_path="$(brew info chromedriver | awk 'FNR==3 { print $0 }' | awk '{print $1}')/chromedriver"
+xattr -d com.apple.quarantine $chromedriver_binary_path
+
 install_brew_dep 'asdf'
 install_brew_dep 'gpg2'
 install_brew_dep 'direnv'
@@ -149,6 +154,7 @@ install_brew_dep 'google-cloud-sdk' --cask
 install_brew_dep 'intellij-idea-ce' --cask
 install_brew_dep 'postgres-unofficial' --cask # https://postgresapp.com/
 install_brew_dep 'macdown' --cask # https://postgresapp.com/
+install_brew_dep 'keycastr' --cask # https://postgresapp.com/
 
 # Utilities
 install_brew_dep 'stats' --cask

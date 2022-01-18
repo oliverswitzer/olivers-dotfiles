@@ -342,6 +342,20 @@
 					<string>poison</string>
 				</dict>
 			</dict>
+			<key>porcelain</key>
+			<dict>
+				<key>date</key>
+				<date>2022-01-16T00:58:00Z</date>
+				<key>entry</key>
+				<dict>
+					<key>name</key>
+					<string>porcelain</string>
+					<key>platform</key>
+					<string>hex</string>
+					<key>uniqueIdentifier</key>
+					<string>porcelain</string>
+				</dict>
+			</dict>
 			<key>telemetry</key>
 			<dict>
 				<key>date</key>
@@ -486,6 +500,8 @@
 		<key>uninstalled</key>
 		<dict/>
 	</dict>
+	<key>DHWKWebViewTextSizeMultiplier</key>
+	<real>1.1999998092651367</real>
 	<key>actuallyDarkWebView</key>
 	<true/>
 	<key>docsets</key>
