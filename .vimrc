@@ -14,7 +14,11 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"Oliver's plugins
+"============== Oliver's plugins =========
+
+" File explorer-UI for nvim https://github.com/kyazdani42/nvim-tree.lua
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Used to quickly surround visual selections with html tags or quotes
 Plug 'tpope/vim-surround'
@@ -63,7 +67,6 @@ Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/fuzzy-projectionist.vim'
 Plug 'andyl/vim-projectionist-elixir'
 
-
 " ==== Coc plugs ==== 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/coc-diagnostic', {'do': 'npm install --force'}
@@ -93,30 +96,6 @@ Plug 'vim-test/vim-test'
 
 call plug#end()
 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-   incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-}
-EOF
 set nocompatible
 set shiftwidth=2
 set tabstop=2
@@ -136,15 +115,23 @@ set undodir=~/.vim/undodir
 set undofile
 
 colorscheme base16-gruvbox-dark-medium
-nnoremap <C-p> :Files<Cr>
 
-"nmap <C-p> :Files<Cr>
+" Most of the time we don't want to include gitignored files in our search. For
+" this use C-p
+nnoremap <C-p> :GFiles<Cr>
+
+" But if you want to search *all* files, including .gitignored ones,
+" we override the default :Files command to do so via the FZF_DEFAULT_COMMAND
+" env var set in ~/.zshrc. This command uses ripgrep (rg) with the needed flags
+" to do this
+nnoremap <C-f> :Files<Cr>
 
 " enable folding by indent, but don't fold everything whenever you open a file
 set foldmethod=indent
 set nofoldenable
 
-"Incremental selection with treesitter
+"Incremental selection with treesitter. Search for gnn/grn/grm to see the
+"treesitter config related to this in this file
 nmap <S-Up> gnn
 vmap <S-Up> grn
 vmap <S-Down> grm

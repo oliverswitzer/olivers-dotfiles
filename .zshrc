@@ -122,6 +122,8 @@ p10kcolors() {
 }
 
 export PROJECT_FOLDER="$HOME/workspace"
+
+# Modifies the :Files command from fzf.vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 source "$HOME/workspace/dotfiles/dotfiles/zshrc.include"
 

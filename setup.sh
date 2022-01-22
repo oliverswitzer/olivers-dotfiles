@@ -108,6 +108,10 @@ install_brew_dep 'tmux'
 install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
 install_brew_dep 'postgresql'
+
+# Alternative to cat that displays syntax highlighting and git changes
+install_brew_dep 'bat'
+
 install_brew_dep 'chromedriver' --cask
 
 # Unquarantine chromedriver because Apple hates Google
