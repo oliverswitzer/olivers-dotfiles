@@ -16,10 +16,6 @@ call plug#begin('~/.vim/plugged')
 
 "============== Oliver's plugins =========
 
-" File explorer-UI for nvim https://github.com/kyazdani42/nvim-tree.lua
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
-
 " Used to quickly surround visual selections with html tags or quotes
 Plug 'tpope/vim-surround'
 
