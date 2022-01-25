@@ -140,6 +140,10 @@ asdf plugin add elixir
 asdf install
 set -e
 
+# Install LiveBook
+
+mix escript.install hex livebook
+asdf reshim elixir
 
 #### Applications
 

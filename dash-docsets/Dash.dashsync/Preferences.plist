@@ -79,7 +79,7 @@
 			<key>ecto_sql</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:22Z</date>
+				<date>2022-01-24T15:58:52Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -216,6 +216,20 @@
 					<string>mox</string>
 				</dict>
 			</dict>
+			<key>oban</key>
+			<dict>
+				<key>date</key>
+				<date>2022-01-25T16:35:58Z</date>
+				<key>entry</key>
+				<dict>
+					<key>name</key>
+					<string>oban</string>
+					<key>platform</key>
+					<string>hex</string>
+					<key>uniqueIdentifier</key>
+					<string>oban</string>
+				</dict>
+			</dict>
 			<key>opentelemetry</key>
 			<dict>
 				<key>date</key>
@@ -303,7 +317,7 @@
 			<key>phoenix_live_view</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:19Z</date>
+				<date>2022-01-24T15:58:53Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
