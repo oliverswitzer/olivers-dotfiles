@@ -20,9 +20,8 @@ call plug#begin('~/.vim/plugged')
 " Used to quickly surround visual selections with html tags or quotes
 Plug 'tpope/vim-surround'
 
-" Helpful auto-completion of common language-specific things
+" " Helpful auto-completion of common language-specific things
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
 
 " Multi-selection using Ctrl + N
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -37,7 +36,7 @@ Plug 'jremmen/vim-ripgrep'
 " Global find and replace 
 Plug 'brooth/far.vim'
 
-" vim-dadbod adds support for querying databases from Vim.
+" vim-dadbod adds support for querying databases from Vim. 
 "
 " Run :DB <db_url> <sql query>
 "
@@ -67,7 +66,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'elixir-editors/vim-elixir'
+" Plug 'elixir-editors/vim-elixir'
 
 " Plug 'gleam-lang/gleam.vim'
 " Plug 'preservim/nerdtree'
@@ -95,6 +94,7 @@ Plug 'neoclide/coc-eslint', {'do': 'npm install --force'}
 Plug 'neoclide/coc-tsserver', {'do': 'npm install --force'}
 Plug 'neoclide/coc-prettier', {'do': 'npm install --force'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'npm install --frozen-lockfile && npm run build'}
+Plug 'neoclide/coc-snippets'
 " Plug 'neoclide/coc-highlight', {'do': 'npm install --force'}
 " Plug 'neoclide/coc-lists', {'do': 'npm install --force'}
 " Plug 'neoclide/coc-yank', {'do': 'npm install --force'}
@@ -271,6 +271,20 @@ let test#filename_modifier = ':.'
 " let test#filename_modifier = ':~' " ~/Code/my_project/test/models/user_test.rb
 "
 " ====
+
+" == from: neoclide/coc-snippets and honza/vim-snippets
+"
+" Instructions for use of snippets:
+"   * Begin typing snippet name hit enter when you find correct snippet in
+"   coc dropdown
+"   * Type anything to replace visually selected text (do not esc or hit i as
+"   this will remove you from the autofill mode that snippets uses)
+"   * Once done filling out the first snippet field, hit <C-j> to jump to the next
+"   snippet field
+"   * Keep doing this until you have filled all the snippet fields out
+nmap <C-s><C-s> :CocList snippets<cr>
+" ====
+
 
 " == from: iamcco/coc-diagnostic
 "

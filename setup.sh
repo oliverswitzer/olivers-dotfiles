@@ -59,7 +59,7 @@ asdf plugin add nodejs
 asdf plugin add postgres
 asdf plugin add elixir
 
-## Python only necessary for a snippet vim plugin... see .tool-versions.
+## Python only necessary for a coc-snippet vim plugin...
 asdf plugin add python
 asdf install
 set -e
