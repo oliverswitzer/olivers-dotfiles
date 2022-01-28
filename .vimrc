@@ -1,5 +1,6 @@
 set termguicolors
 
+" Checks for nvim being installed...
 if has('nvim') && empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -14,7 +15,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"============== Oliver's plugins =========
+"BEGIN: ============== Oliver's plugins =========
 
 " Used to quickly surround visual selections with html tags or quotes
 Plug 'tpope/vim-surround'
@@ -43,14 +44,18 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
-" ========================================
+" END: =================Oliver's plugins ==========
+
+" Use to help navigate between vim/tmux panes seamlessly with ctrl + hjkl
 Plug 'christoomey/vim-tmux-navigator'
 
+" Excellent library for searching across your project (among other things)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-"Plug 'dense-analysis/ale'
-" Plug 'elixir-editors/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
+Plug 'tpope/vim-dadbod'
+
 " Plug 'gleam-lang/gleam.vim'
 " Plug 'preservim/nerdtree'
 Plug 'preservim/vimux'
@@ -111,61 +116,114 @@ set ruler
 set textwidth=80
 set colorcolumn=+1
 set number
-set undodir=~/.vim/undodir
-set undofile
+set undodir=~/.vim/undodir "persist undo's per-file across vim sessions to not lose undo history
+set undofile "enable the above
+set foldmethod=indent "enable folding by indent
+set nofoldenable "but don't fold everything whenever you open a file
 
 colorscheme base16-gruvbox-dark-medium
 
-" Most of the time we don't want to include gitignored files in our search. For
-" this use C-p
+" Vim leader is ","
+let mapleader=","
+
+" To resource `~/.vimrc`
+nmap <leader>l :so $MYVIMRC<cr>
+
+" == bare Vim remappings ==
+"
+" Remap saving files
+nmap <silent> <leader>w :w<CR>
+nmap <silent> <leader>q :q<CR>
+
+" , + enter removes yellow highlights after searching
+nmap <leader><cr> :nohlsearch <cr>
+
+" Some magic to make tabbing through autocompletion popups from CoC work.
+"
+" Hit tab to navigate through popups
+" Hit enter while in popup to select currently highlighted thing
+"
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" ====
+
+" == from junegunn/fzf ==: 
+"
+" Search all files tracked by git
 nnoremap <C-p> :GFiles<Cr>
 
-" But if you want to search *all* files, including .gitignored ones,
-" we override the default :Files command to do so via the FZF_DEFAULT_COMMAND
-" env var set in ~/.zshrc. This command uses ripgrep (rg) with the needed flags
-" to do this
+" Search all files that are currently modified / staged with git
+nnoremap <silent> gst :GFiles?<CR>
+
+" Search for file across all files including those not tracked by Git
+"   NOTE: This is not the default behaviour of :Files from fzf...
+"   we override the default :Files command to do so via the FZF_DEFAULT_COMMAND
+"   env var set in ~/.zshrc. This command uses ripgrep (rg) with the needed flags
+"   to do this
 nnoremap <C-f> :Files<Cr>
+"
+" ====
 
-" enable folding by indent, but don't fold everything whenever you open a file
-set foldmethod=indent
-set nofoldenable
-
-"Incremental selection with treesitter. Search for gnn/grn/grm to see the
-"treesitter config related to this in this file
+" == from nvim-treesitter/nvim-treesitter: (see ~/.config/nvim/init.vim for
+"treesitter config) ==: 
+"
+"Incremental selection with treesitter. Search for gnn/grn/grm in the above
+"specified file path to see the treesitter config related to this in this file
 nmap <S-Up> gnn
 vmap <S-Up> grn
 vmap <S-Down> grm
+" ====
 
 map 0 ^
 
-"nmap <C-p> :GFiles<cr>
-nnoremap <silent> gst :GFiles?<CR>
+" == from yegappan/mru: shows recently open files == 
 nnoremap <leader>ru :MRU<CR>
 
-let mapleader=","
-nmap <leader>l :so $MYVIMRC<cr>
-
-" Use `:Format` to format current buffer
+" == from coc-nvim == 
+"
+" Defines `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+" ====
 
-" vimux 'slime'
+" == from: vim-projectionist / 'c-brenn/fuzzy-projectionist.vim' / 'andyl/vim-projectionist-elixir'
+"
+" NOTE: Technically the below commands also toggle between other types of
+" associated file types than test and source files. They may work on toggling
+" between controllers & views, or LiveViews and Views... however my
+" main use case for it is to toggle between tests and src code.
+"
+" Toggle between test and src files for current buffer
+nnoremap <Leader>gt :A<CR>
+
+" Open associated test/src file for current file in new vertical split buffer
+nnoremap <Leader>gv :AV<CR>
+" ==== 
+
+" == from: 'preservim/vimux'
+"
+" Define a function that sends highlighted text to Vimux (tmux) buffer
 function! VimuxSlime()
   call VimuxSendText(@v)
   call VimuxSendKeys("Enter")
 endfunction
 
-" vim-projectionist: Toggle between test and src files in Elixir
-nnoremap <Leader>gt :A<CR>
-nnoremap <Leader>gv :AV<CR>
-
- " If text is selected, save it in the v buffer and send that buffer it to tmux
+ " If text is already selected, save it in the v buffer and send that buffer to tmux
 vmap <C-c><C-c> "vy :call VimuxSlime()<CR>
- " Select current paragraph and send it to tmux
+ " Select current paragraph that your cursor is over and send it to tmux
 nmap <C-c><C-c> vip<C-c><C-c>
 
+" Run the last command you sent to tmux
 nmap <C-c><C-l> :wa <bar> VimuxRunLastCommand<CR>
-nmap <silent> <C-c><C-f> :wa <bar> VimuxRunCommand "mix surface.format"<CR>
 
+" Specifically to run mix surface.format
+nmap <silent> <C-c><C-f> :wa <bar> VimuxRunCommand "mix surface.format"<CR>
+" ====
+
+" == from: 'vim-test/vim-test'
+"
 " Test mappings
 " these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
 nmap <silent> <C-t><C-n> :wa <bar> TestNearest<CR>
@@ -173,10 +231,13 @@ nmap <silent> <C-t><C-f> :wa <bar> TestFile<CR>
 nmap <silent> <C-t><C-s> :wa <bar> TestSuite<CR>
 nmap <silent> <C-t><C-l> :wa <bar> TestLast<CR>
 nmap <silent> <C-t><C-g> :wa <bar> TestVisit<CR>
-let test#strategy = 'vimux'
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
 
+" Other options for where to run tests are below. Keep them around in case you
+" wish to switch from using vimux to something else
+"
+let test#strategy = 'vimux'
 " let test#strategy = 'dispatch'
 " let test#strategy = 'make'
 " let test#strategy = 'terminal' " run in mac terminal application terminal
@@ -184,46 +245,51 @@ let g:VimuxHeight = "40"
 " let test#strategy = 'basic' " run test commands with :!
 " let test#strategy = 'neovim' " use neovim :terminal
 " let test#strategy = 'vimterminal' " vim 8 trminal
+
+" Different ways of specifying what file path to feed to the test runner
+"
 let test#filename_modifier = ':.'
 " let test#filename_modifier = ':.' " test/models/user_test.rb (default)
 " let test#filename_modifier = ':p' " /User/janko/Code/my_project/test/models/user_test.rb
 " let test#filename_modifier = ':~' " ~/Code/my_project/test/models/user_test.rb
+"
+" ====
 
+" == from: iamcco/coc-diagnostic
+"
 " Jump to next error
-" Use `[d` and `]d` to navigate diagnostics (`e` jumps directly to errors)
+" Use `[d` and `]d` to navigate diagnostics (`e` jumps directly to errors only)
 nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
 nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
+
+" , + e shows diagnostic info across entire project
 nmap <silent> <leader>e <Plug>(coc-diagnostic-info)
+
+" , + d shows error info across entire project
 nnoremap <silent> <leader>d  :<C-u>CocList -A --normal diagnostics<cr>
+" ==== 
 
-" Remap saving files
-nmap <silent> <leader>w :w<CR>
-nmap <silent> <leader>q :q<CR>
-
-" Remap keys for gotos
+" == from: coc-* ==  
+"
+" Coc jump to mappings:
+"
+" current symbol = thing your cursor is over
+"
+"  gd: Jump to definition(s) of current symbol by invoke
 nmap <silent> gd <Plug>(coc-definition)
+"  gy: Jump to type definition(s) of current symbol by invoke
 nmap <silent> gy <Plug>(coc-type-definition)
+"  gi: Jump to implementation(s) of current symbol by invoke
 nmap <silent> gi <Plug>(coc-implementation)
+"  gr: Jump to reference(s) of the current symbol by invoke
 nmap <silent> gr <Plug>(coc-references)
 
+" Show coc hover docs
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-nmap <leader><cr> :nohlsearch <cr>
-
-" git mappings
-nnoremap <silent> <leader>gi :CocCommand git.chunkInfo<CR>
-nnoremap <silent> <leader>gu :CocCommand git.chunkUndo<CR>
-nnoremap <silent> <leader>ga :CocCommand git.chunkStage<CR>
-
-" navigate chunks of current buffer
-nmap [c <Plug>(coc-git-prevchunk)
-nmap ]c <Plug>(coc-git-nextchunk)
-
-nmap cp :VCoolor <cr>
-
 function! s:show_documentation()
+  " If inside of a vim doc or help, don't use CoC hover docs
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -231,14 +297,37 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Coc git mappings
+"
+" Show git information under your cursor (will show git diff associated with git
+" gutter bar)
+nnoremap <silent> <leader>gi :CocCommand git.chunkInfo<CR>
+
+" Undo change associated with git gutter bar
+nnoremap <silent> <leader>gu :CocCommand git.chunkUndo<CR>
+
+" Stages change from git gutter bar
+nnoremap <silent> <leader>ga :CocCommand git.chunkStage<CR>
+
+" Navigate git chunks of current buffer
+nmap [c <Plug>(coc-git-prevchunk)
+nmap ]c <Plug>(coc-git-nextchunk)
+" ==== 
+
+" == from KabbAmine/vCoolor.vim ==
+"
+" Opens a color palette selector and inserts a hex / rgb value of whatever you
+" choose
+nmap cp :VCoolor <cr>
+" ==== 
+
+" This doesn't appear to do anything? Keeping around until I discover what it
+" does
 nmap <silent> <leader>f :CocAction<cr>
 
+
+" == Use fzf to help search through Registers with custom :Registers command
 function! GetRegisters()
     redir => cout
     silent registers
@@ -254,8 +343,9 @@ endfunction
 command! Registers call fzf#run(fzf#wrap({
             \ 'source': GetRegisters(),
             \ 'sink': function('UseRegister')}))
+" ==== 
 
-
+" == Get a new RandomColorScheme when you invoke the :NewColor command.
 function! RandomColorScheme()
   let mycolors = split(globpath(&rtp,"colors/*.vim"),"\n")
 
@@ -275,3 +365,4 @@ function! RandomColorScheme()
 endfunction
 
 :command! NewColor call RandomColorScheme()
+" ====

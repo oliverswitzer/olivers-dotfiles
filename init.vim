@@ -1,6 +1,5 @@
 source ~/.vimrc
 
-
 " ============ BEGIN: all lua config ====================================
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
