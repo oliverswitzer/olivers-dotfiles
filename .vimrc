@@ -19,6 +19,10 @@ call plug#begin('~/.vim/plugged')
 " Used to quickly surround visual selections with html tags or quotes
 Plug 'tpope/vim-surround'
 
+" Helpful auto-completion of common language-specific things
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+
 " Multi-selection using Ctrl + N
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 

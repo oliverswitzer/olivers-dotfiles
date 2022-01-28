@@ -47,8 +47,33 @@ function install_tmux() {
   tmux kill-server
 }
 
-# Dotfiles & Vim
+# BEGIN: Set up ASDF
 
+install_brew_dep 'asdf'
+
+set +e
+echo "Installing asdf plugins"
+asdf plugin add erlang
+asdf plugin add golang
+asdf plugin add nodejs
+asdf plugin add postgres
+asdf plugin add elixir
+
+## Python only necessary for a snippet vim plugin... see .tool-versions.
+asdf plugin add python
+asdf install
+set -e
+
+## Again, necessary for same vim plugin that uses neovim python wrapper
+pip install neovim
+
+## Install LiveBook
+mix escript.install hex livebook
+asdf reshim elixir
+
+# END: Set up ASDF
+
+# BEGIN: Dotfiles & Vim
 symlink_dotfile '.zshrc' $HOME
 symlink_dotfile '.zprofile' $HOME
 symlink_dotfile '.tool-versions' $HOME
@@ -68,29 +93,37 @@ symlink_dotfile 'init.vim' $HOME/.config/nvim
 install_brew_dep 'neovim'
 nvim +'PlugInstall --sync' +qa
 
-## Install oh-my-zsh
+# END: Dotfiles & Vim
+
+# BEGIN: Install oh-my-zsh
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  # Install oh-my-zsh plugin for terminal UI: powerlevel10k
+  ## Install oh-my-zsh plugin for terminal UI: powerlevel10k
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
 
 ## Install elixir-ls release
 if [[ ! -d ~/.vim/plugged/coc-elixir/els-release ]]; then
   echo "Downloading elixir-ls into $HOME/.elixir-ls" 
-  # Note that this release is hardcoded as 0.9.0 because I couldn't figure out
+
+  # Note that this elixir-ls release is hardcoded as 0.9.0 because I couldn't figure out
   # how to download the latest release via Github urls
+  #
+  # It's also better to download the release from github than to try to build the elixir-lsp
+  # repo yourself to avoid backward compatibility issues with the OTP version
+  # you end up building elixir-ls version with and the project you use elixir-ls
+  # on
   curl -L  https://github.com/elixir-lsp/elixir-ls/releases/download/v0.9.0/elixir-ls.zip
   mkdir -p ~/.vim/plugged/coc-elixir/els-release 
   unzip elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release
 fi
 
-# Brew Dependencies
+# END: Install oh-my-zsh
 
+# BEGIN: Brew Dependencies
 set +e
-
 which -s brew
 if [[ $? != 0 ]] ; then
   echo "Homebrew not installed. Installing homebrew..."
@@ -99,7 +132,6 @@ if [[ $? != 0 ]] ; then
 else
   brew update
 fi
-
 set -e
 
 ## Brew binaries
@@ -109,16 +141,15 @@ install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
 install_brew_dep 'postgresql'
 
-# Alternative to cat that displays syntax highlighting and git changes
+## Alternative to cat that displays syntax highlighting and git changes
 install_brew_dep 'bat'
 
 install_brew_dep 'chromedriver' --cask
 
-# Unquarantine chromedriver because Apple hates Google
+## Unquarantine chromedriver because Apple hates Google
 chromedriver_binary_path="$(brew info chromedriver | awk 'FNR==3 { print $0 }' | awk '{print $1}')/chromedriver"
 xattr -d com.apple.quarantine $chromedriver_binary_path
 
-install_brew_dep 'asdf'
 install_brew_dep 'gpg2'
 install_brew_dep 'direnv'
 install_brew_dep 'the_silver_searcher'
@@ -127,25 +158,8 @@ install_brew_dep 'pulumi'
 brew tap heroku/brew
 install_brew_dep 'heroku'
 
-# Necessary for kubectl to work (version is referenced in ~/.zshrc)
+## Necessary for kubectl to work (version is referenced in ~/.zshrc)
 install_brew_dep 'python@3.8'
-
-set +e
-echo "Installing asdf plugins"
-asdf plugin add erlang
-asdf plugin add golang
-asdf plugin add nodejs
-asdf plugin add postgres
-asdf plugin add elixir 
-asdf install
-set -e
-
-# Install LiveBook
-
-mix escript.install hex livebook
-asdf reshim elixir
-
-#### Applications
 
 # Work-related
 install_brew_dep 'docker' --cask
@@ -173,3 +187,5 @@ install_brew_dep 'shiftit' --cask
 install_brew_dep 'flux' --cask
 install_brew_dep 'vlc' --cask
 install_brew_dep 'spotify' --cask
+
+# END: Brew Dependencies
