@@ -37,6 +37,20 @@ Plug 'jremmen/vim-ripgrep'
 " Global find and replace 
 Plug 'brooth/far.vim'
 
+" vim-dadbod adds support for querying databases from Vim.
+"
+" Run :DB <db_url> <sql query>
+"
+" NOTES:
+"   * vim-elixir works with this by running :DB MyApp.Repo <sql query>. However,
+"   it does not work if your app is running inside of docker
+"   * vim-dotenv allows you to call :DB $DATABASE_URL if DATABASE_URL is set in
+"   your .env file
+Plug 'tpope/vim-dadbod'
+
+"
+Plug 'tpope/vim-dotenv'
+
 "Oliver's: Tsx/Jsx related
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -54,7 +68,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'elixir-editors/vim-elixir'
-Plug 'tpope/vim-dadbod'
 
 " Plug 'gleam-lang/gleam.vim'
 " Plug 'preservim/nerdtree'
@@ -148,6 +161,10 @@ nmap <leader><cr> :nohlsearch <cr>
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" ====
+
+" == from: tpope/vim-dadbod / tpope/vim-dotenv ==
+nnoremap <C-d><C-d> :DB $DATABASE_URL
 " ====
 
 " == from junegunn/fzf ==: 
