@@ -94,7 +94,7 @@ Plug 'neoclide/coc-eslint', {'do': 'npm install --force'}
 Plug 'neoclide/coc-tsserver', {'do': 'npm install --force'}
 Plug 'neoclide/coc-prettier', {'do': 'npm install --force'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'npm install --frozen-lockfile && npm run build'}
-Plug 'neoclide/coc-snippets'
+Plug 'neoclide/coc-snippets', { 'do': 'npm install --force'}
 " Plug 'neoclide/coc-highlight', {'do': 'npm install --force'}
 " Plug 'neoclide/coc-lists', {'do': 'npm install --force'}
 " Plug 'neoclide/coc-yank', {'do': 'npm install --force'}
