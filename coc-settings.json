@@ -1,4 +1,5 @@
 {
+  "snippets.userSnippetsDirectory": "/Users/oliverswitzer/.snippets",
   "coc.preferences.formatOnSaveFiletypes": [
     "elixir",
     "typescriptreact",

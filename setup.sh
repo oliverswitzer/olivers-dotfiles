@@ -81,6 +81,7 @@ symlink_dotfile '.vimrc' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
+symlink_dotfile '.snippets' $HOME
 
 install_tmux
 
