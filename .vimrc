@@ -146,6 +146,9 @@ set undodir=~/.vim/undodir "persist undo's per-file across vim sessions to not l
 set undofile "enable the above
 set foldmethod=indent "enable folding by indent
 set nofoldenable "but don't fold everything whenever you open a file
+set formatoptions=jancqrw
+autocmd BufNewFile,BufRead markdown setlocal fo+=t
+
 
 colorscheme base16-gruvbox-dark-medium
 
