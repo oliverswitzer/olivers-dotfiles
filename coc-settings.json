@@ -1,4 +1,5 @@
 {
+  "coc.preferences.jumpCommand": "drop",
   "snippets.userSnippetsDirectory": "/Users/oliverswitzer/.snippets",
   "coc.preferences.formatOnSaveFiletypes": [
     "elixir",
