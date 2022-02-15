@@ -50,7 +50,13 @@ Plug 'tpope/vim-dadbod'
 "
 Plug 'tpope/vim-dotenv'
 
-"Oliver's: Tsx/Jsx related
+" Use g<, g> to swap parameters in a function https://github.com/machakann/vim-swap
+" gs will start "swap mode" which will allow you to interactively swap things
+" around using hl to navigate items, jk to choose item, and 1-9 to select an
+" item
+Plug 'machakann/vim-swap'
+
+"Tsx/Jsx related
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -74,8 +80,8 @@ Plug 'preservim/vimux'
 Plug 'tpope/vim-fugitive'
 
 "Most recently used... open with :MRU
-
 Plug 'yegappan/mru'
+
 Plug 'tpope/vim-abolish'
 
 " Following three plugins are for quick navigation between elixir test and src
