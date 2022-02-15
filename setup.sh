@@ -10,8 +10,12 @@ symlink_dotfile() {
   dest_dotfile=$dest_path/$file_name
 
   if test -f "$dest_dotfile"; then
-    echo "⚠️  $dest_dotfile already exists, copying it to $file_name.bak"
+    echo "⚠️  $dest_dotfile dotfile already exists, copying it to $file_name.bak"
     cp $dest_dotfile{,.bak}
+  fi
+  if test -d "$dest_dotfile"; then
+    echo "⚠️  $dest_dotfile dotfile directory already exists, recursively copying it to $file_name.bak"
+    cp -R $dest_dotfile{,.bak}
   fi
 
   echo "Symlinking $repo_dotfile to $dest_dotfile..."
@@ -82,6 +86,7 @@ symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
 symlink_dotfile '.snippets' $HOME
+symlink_dotfile '.hammerspoon' $HOME
 
 install_tmux
 
@@ -182,7 +187,14 @@ install_brew_dep 'keycastr' --cask # https://postgresapp.com/
 # Utilities
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
-install_brew_dep 'shiftit' --cask
+
+# shiftit keeps getting broken on updates to MacOS, so I've switched over to
+# using Hammerspoon in combination with a hammerspoon-shiftit configuration.
+#   See:
+#     * hammerspoon: https://github.com/Hammerspoon/hammerspoon
+#     * hammerspoon-shifit: https://github.com/peterklijn/hammerspoon-shiftit
+# install_brew_dep 'shiftit' --cask
+install_brew_dep 'hammerspoon' --cask
 
 # Non-work related
 install_brew_dep 'flux' --cask
