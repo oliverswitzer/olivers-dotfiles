@@ -139,15 +139,15 @@ set hlsearch
 set incsearch
 set laststatus=2
 set ruler
-set textwidth=80
-set colorcolumn=+1
+" set textwidth=80
+set colorcolumn=81
 set number
 set undodir=~/.vim/undodir "persist undo's per-file across vim sessions to not lose undo history
 set undofile "enable the above
 set foldmethod=indent "enable folding by indent
 set nofoldenable "but don't fold everything whenever you open a file
-set formatoptions=jancqrw
-autocmd BufNewFile,BufRead markdown setlocal fo+=t
+" set formatoptions=jancqrw
+" autocmd BufNewFile,BufRead markdown setlocal fo+=t
 
 
 colorscheme base16-gruvbox-dark-medium
