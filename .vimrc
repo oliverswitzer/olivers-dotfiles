@@ -301,6 +301,8 @@ let test#filename_modifier = ':.'
 nmap <C-s><C-s> :CocList snippets<cr>
 " ====
 
+" Show a list of all the functions in the current module
+nmap <leader>oo :CocList outline methods<cr>
 
 " == from: iamcco/coc-diagnostic
 "

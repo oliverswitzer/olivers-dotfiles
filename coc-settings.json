@@ -1,6 +1,12 @@
 {
   "coc.preferences.jumpCommand": "drop",
   "snippets.userSnippetsDirectory": "/Users/oliverswitzer/.snippets",
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"],
+    "elixir": ["html", "eelixir"],
+    "eelixir": ["html"]
+  },
   "coc.preferences.formatOnSaveFiletypes": [
     "elixir",
     "typescriptreact",
@@ -25,6 +31,7 @@
     "javascript": "javascriptreact",
     "eelixir": "html",
     "elixir": "html",
+    "livemd": "elixir",
     "jsx": "javascriptreact",
     "tsx": "typescriptreact"
   },
