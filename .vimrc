@@ -63,6 +63,9 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
+"Most recently used... open with :MRU
+Plug 'yegappan/mru'
+
 " END: =================Oliver's plugins ==========
 
 " Use to help navigate between vim/tmux panes seamlessly with ctrl + hjkl
@@ -78,9 +81,6 @@ Plug 'junegunn/fzf.vim'
 " Plug 'preservim/nerdtree'
 Plug 'preservim/vimux'
 Plug 'tpope/vim-fugitive'
-
-"Most recently used... open with :MRU
-Plug 'yegappan/mru'
 
 Plug 'tpope/vim-abolish'
 
@@ -346,6 +346,10 @@ function! s:show_documentation()
   endif
 endfunction
 
+" vim Fugutive:
+"
+" Shows the git history of the file in your current buffer
+nnoremap <silent> <leader>gh :0Gclog<cr>
 
 " Coc git mappings
 "
