@@ -45,10 +45,15 @@
 [merge]
     tool = intellij
 [mergetool "intellij"]
-    cmd = /usr/local/bin/idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+    cmd = open $(brew info --cask intellij-idea-ce | sed -n '3 p' | cut -f1 -d' ')/IntelliJ\\ IDEA\\ CE.app && sleep 5 && /usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
     trustExitCode = true
 
 [diff]
     tool = intellij
 [difftool "intellij"]
-    cmd = /usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+    cmd = open $(brew info --cask intellij-idea-ce | sed -n '3 p' | cut -f1 -d' ')/IntelliJ\\ IDEA\\ CE.app && sleep 5 && /usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
