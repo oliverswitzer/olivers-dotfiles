@@ -58,8 +58,21 @@ function install_tmux() {
   tmux kill-server
 }
 
-# BEGIN: Set up ASDF
+# BEGIN: Install Homebrew
 
+set +e
+which -s brew
+if [[ $? != 0 ]] ; then
+  echo "Homebrew not installed. Installing homebrew..."
+  # Install Homebrew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  brew update
+fi
+set -e
+
+# END: Install Homebrew
+# BEGIN: Set up ASDF
 install_brew_dep 'asdf'
 
 set +e
@@ -147,17 +160,6 @@ fi
 
 # END: Install oh-my-zsh
 # BEGIN: Brew Dependencies
-
-set +e
-which -s brew
-if [[ $? != 0 ]] ; then
-  echo "Homebrew not installed. Installing homebrew..."
-  # Install Homebrew
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-  brew update
-fi
-set -e
 
 ## Brew binaries
 
