@@ -159,6 +159,7 @@ xattr -d com.apple.quarantine $chromedriver_binary_path
 install_brew_dep 'gpg2'
 install_brew_dep 'direnv'
 install_brew_dep 'the_silver_searcher'
+install_brew_dep 'ripgrep'
 install_brew_dep 'gh'
 install_brew_dep 'pulumi'
 brew tap heroku/brew
