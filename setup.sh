@@ -1,5 +1,12 @@
 set -e
 
+# Run this script simply by executing it:
+# 
+# $ ./setup.sh
+#
+# To use the new nvim-only based setup (ie no .vimrc, CoC or elixir-ls setup), run it with the --nvim-only flag
+#
+# $ ./setup.sh --nvim-only
 repo_dir=$(pwd)
 
 symlink_dotfile() {
@@ -77,31 +84,59 @@ asdf reshim elixir
 
 # END: Set up ASDF
 
-# BEGIN: Dotfiles & Vim
+# BEGIN: Dotfiles
 symlink_dotfile '.zshrc' $HOME
 symlink_dotfile '.zprofile' $HOME
 symlink_dotfile '.tool-versions' $HOME
-symlink_dotfile '.vimrc' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
 symlink_dotfile '.snippets' $HOME
 symlink_dotfile '.hammerspoon' $HOME
 
-install_tmux
-
-## Coc Config
-mkdir -p ~/.config/nvim
-symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
-symlink_dotfile 'init.vim' $HOME/.config/nvim
-
-## Install Vim plugins
 install_brew_dep 'neovim'
-nvim +'PlugInstall --sync' +qa
+mkdir -p ~/.config/nvim
+
+if [[ $* == *--nvim-only* ]]; then;
+  echo "Installing new nvim-only setup, skipping copying .vimrc, coc and elixir-ls stuff...."
+  symlink_dotfile 'nvim' $HOME/.config/nvim
+
+  # Used to sort tailwind class selectors
+  npm install -g rustywind
+else
+  symlink_dotfile '.vimrc' $HOME
+
+  ## Coc Config
+  mkdir -p ~/.config/nvim
+  symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
+  symlink_dotfile 'init.vim' $HOME/.config/nvim
+
+  ## Install Vim plugins
+  nvim +'PlugInstall --sync' +qa
+
+  ## Install elixir-ls release
+  if [[ ! -d ~/.vim/plugged/coc-elixir/els-release ]]; then
+    echo "Downloading elixir-ls into $HOME/.elixir-ls" 
+
+    # Note that this elixir-ls release is hardcoded as 0.9.0 because I couldn't figure out
+    # how to download the latest release via Github urls
+    #
+    # It's also better to download the release from github than to try to build the elixir-lsp
+    # repo yourself to avoid backward compatibility issues with the OTP version
+    # you end up building elixir-ls version with and the project you use elixir-ls
+    # on
+    curl -L  https://github.com/elixir-lsp/elixir-ls/releases/download/v0.9.0/elixir-ls.zip
+    mkdir -p ~/.vim/plugged/coc-elixir/els-release 
+    unzip elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release
+  fi
+fi
+
+install_tmux
 
 # END: Dotfiles & Vim
 
 # BEGIN: Install oh-my-zsh
+
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -110,25 +145,9 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
 
-## Install elixir-ls release
-if [[ ! -d ~/.vim/plugged/coc-elixir/els-release ]]; then
-  echo "Downloading elixir-ls into $HOME/.elixir-ls" 
-
-  # Note that this elixir-ls release is hardcoded as 0.9.0 because I couldn't figure out
-  # how to download the latest release via Github urls
-  #
-  # It's also better to download the release from github than to try to build the elixir-lsp
-  # repo yourself to avoid backward compatibility issues with the OTP version
-  # you end up building elixir-ls version with and the project you use elixir-ls
-  # on
-  curl -L  https://github.com/elixir-lsp/elixir-ls/releases/download/v0.9.0/elixir-ls.zip
-  mkdir -p ~/.vim/plugged/coc-elixir/els-release 
-  unzip elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release
-fi
-
 # END: Install oh-my-zsh
-
 # BEGIN: Brew Dependencies
+
 set +e
 which -s brew
 if [[ $? != 0 ]] ; then
