@@ -252,7 +252,7 @@ nmap <C-c><C-c> vip<C-c><C-c>
 nmap <C-c><C-l> :wa <bar> VimuxRunLastCommand<CR>
 
 " Specifically to run mix surface.format
-nmap <silent> <C-c><C-f> :wa <bar> VimuxRunCommand "mix surface.format"<CR>
+nmap <silent> <C-c><C-f> :wa <bar> VimuxRunCommand "mix format"<CR>
 " ====
 
 " == from: 'vim-test/vim-test'
