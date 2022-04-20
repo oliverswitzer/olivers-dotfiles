@@ -41,6 +41,11 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- Oliver's plugins
+  -- Following three plugins are for quick navigation between elixir test and src
+  -- files. See https://github.com/andyl/vim-projectionist-elixir. Tag: go to test
+  use {'tpope/vim-projectionist'}
+  use {'c-brenn/fuzzy-projectionist.vim'}
+  use {'andyl/vim-projectionist-elixir'}
 
   use {"mg979/vim-visual-multi", branch='master'} -- Multi-selection using Ctrl + N
   use {"mbbill/undotree"} -- Shows undo history tracked by built-in :earlier and :later commands

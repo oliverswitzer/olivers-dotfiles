@@ -13,6 +13,7 @@ null_ls.setup({
 	sources = {
 		formatting.prettier.with({ extra_args = {} }),
 		formatting.black.with({ extra_args = { "--fast" } }),
+    formatting.shfmt
     -- formatting.rustywind.with({
     --   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "html", "elixir", "eelixir" },
     -- })
