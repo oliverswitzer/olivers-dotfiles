@@ -19,10 +19,14 @@ vim.cmd [[
     autocmd FileType markdown setlocal spell
   augroup end
 
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
+  " NOTE: The intent here was to resize all vim windows to be equal size whenever resizing the vim window
+  " but for some reason this has the unintended consequence of only navigating to the next tab... 
+  " not sure why.
+  "
+  " augroup _auto_resize
+  "   autocmd!
+  "   autocmd VimResized * tabdo wincmd =
+  " augroup end
 
   augroup _alpha
     autocmd!
