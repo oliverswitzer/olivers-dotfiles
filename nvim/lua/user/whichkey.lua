@@ -87,6 +87,13 @@ local mappings = {
     f = {"<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>", "Find all files"},
     d = {"<cmd>:DBUI<CR>", "Query Database"},
   },
+  ["d"] = {
+    name = "Diagnostics (Trouble)",
+    r = {"<cmd>Trouble lsp_references<CR>", "Find References"},
+    w = {"<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics"},
+    d = {"<cmd>Trouble document_diagnostics<cr>", "Document Diagnostics"},
+    q = {"<cmd>Trouble quickfix<cr>", "Quickfix List"}
+  }, 
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
