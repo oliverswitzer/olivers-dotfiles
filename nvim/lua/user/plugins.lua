@@ -50,6 +50,11 @@ return packer.startup(function(use)
   use {"mg979/vim-visual-multi", branch='master'} -- Multi-selection using Ctrl + N
   use {"mbbill/undotree"} -- Shows undo history tracked by built-in :earlier and :later commands
 
+  use {"tpope/vim-dadbod"}
+  use {"kristijanhusak/vim-dadbod-ui"}
+  use {"tpope/vim-dotenv"}
+  use {"brooth/far.vim"}
+
   -- Use g<, g> to swap parameters in a function https://github.com/machakann/vim-swap
   -- gs will start "swap mode" which will allow you to interactively swap things
   -- around using hl to navigate items, jk to choose item, and 1-9 to select an

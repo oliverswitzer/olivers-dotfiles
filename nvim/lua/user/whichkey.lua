@@ -82,9 +82,10 @@ local mappings = {
   ["o"] = {
     name = "Oliver's Keys", 
     h = {"<cmd>UndotreeToggle<cr>", "Local history"},
-    ["gt"] = {"<cmd> :A<CR>", "Go to test"},
-    ["gv"] = {"<cmd> :AV<CR>", "Go to test with vertical split"},
-    f = {"<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>", "Find all files"}
+    t = {"<cmd> :A<CR>", "Go to test"},
+    v = {"<cmd> :AV<CR>", "Go to test with vertical split"},
+    f = {"<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>", "Find all files"},
+    d = {"<cmd>:DBUI<CR>", "Query Database"},
   },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
