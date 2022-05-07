@@ -171,6 +171,9 @@ install_brew_dep 'postgresql'
 ## Alternative to cat that displays syntax highlighting and git changes
 install_brew_dep 'bat'
 
+## Used by null-ls language server to format bash
+install_brew_dep 'shfmt'
+
 install_brew_dep 'chromedriver' --cask
 
 ## Unquarantine chromedriver because Apple hates Google
