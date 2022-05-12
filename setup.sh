@@ -195,6 +195,7 @@ install_brew_dep 'python@3.8'
 # Work-related
 install_brew_dep 'docker' --cask
 install_brew_dep 'google-chrome' --cask
+install_brew_dep 'firefox' --cask
 install_brew_dep 'dash' --cask
 install_brew_dep 'slack' --cask
 install_brew_dep 'tandem' --cask
