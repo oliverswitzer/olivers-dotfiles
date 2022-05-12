@@ -36,7 +36,7 @@
 [push]
 	default = current
 [http]
-	postBuffer = 100000000
+	postBuffer = 157286400
 [include]
 	path = ~/.gitconfig-geometer
 [url "ssh://git@github.com/"]
