@@ -61,6 +61,10 @@ return packer.startup(function(use)
   -- item
   use "machakann/vim-swap"
 
+
+  -- Used for better, language-aware use of the % operator in Vim. Language-aware feature depends on treesitter
+  use 'andymass/vim-matchup'
+
   -- Default plugins: 
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim

@@ -29,6 +29,10 @@ configs.setup {
       node_decremental = "grm",
     },
   },
+  matchup = {
+    enable = true, -- mandatory, false will disable the whole extension
+    disable = {},  -- optional, list of language that will be disabled
+  }
 }
 vim.api.nvim_set_keymap("n", "<S-Up>", "gnn", {})
 vim.api.nvim_set_keymap("v", "<S-Up>", "grn", {})

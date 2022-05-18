@@ -29,6 +29,12 @@ vim.cmd [[
     autocmd VimResized * wincmd =
   " augroup end
 
+  " % matchwords for Elixir. See 'andymass/vim-matchup'
+  autocmd FileType elixir let b:match_words = '\<\%(case\|cond\|if\|unless\|try\|loop\|receive\|fn\|with\|' .
+      \ 'defmodule\|defimpl\|defmacro\|defdelegate\|defexception\|defcallback\|defoverridable\|defp\|def\|test\)\>=\@!:' .
+      \ '\<\%(else\|elsif\|catch\|after\|rescue\|\-\)\>:' .
+      \ '\<end\>,{:},\[:\],(:)'
+
   augroup _alpha
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
