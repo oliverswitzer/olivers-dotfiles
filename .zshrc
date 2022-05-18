@@ -149,6 +149,7 @@ alias bc="./run-test ./bin/checks.sh"
 alias dcu="docker-compose up"
 alias dcr="docker-compose restart"
 alias dcd="docker-compose down"
+alias ghprev="gh pr create --title 'Preview' --body 'Preview' --web"
 
 # Misc
 alias sshunsafe="ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\""
