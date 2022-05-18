@@ -24,6 +24,7 @@ vim.cmd [[
   " not sure why.
   "
   " augroup _auto_resize
+  
   "   autocmd!
     autocmd VimResized * wincmd =
   " augroup end
@@ -43,8 +44,8 @@ vim.cmd [[
   set autoread
   au FocusGained * checktime
 
-  " Save on focus lost
-  au FocusLost * silent! :wa
-  " Write all buffers before navigating from Vim to tmux pane (using vim-tmux-navigator)
-  let g:tmux_navigator_save_on_switch = 2
+  " " Save on focus lost
+  " au FocusLost * silent! :wa
+  " " Write all buffers before navigating from Vim to tmux pane (using vim-tmux-navigator)
+  " let g:tmux_navigator_save_on_switch = 2
 ]]
