@@ -8,6 +8,7 @@ if not snip_status_ok then
   return
 end
 
+luasnip.filetype_extend("elixir", {"html"})
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
