@@ -83,6 +83,7 @@ end
 
 M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
+    --Change to client.server_capabilities.documentFormattingProvider = false after upgrading to vim 0.8
     client.resolved_capabilities.document_formatting = false
   end
   lsp_keymaps(bufnr)
