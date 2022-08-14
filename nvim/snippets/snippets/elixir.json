@@ -1,0 +1,56 @@
+{
+  "defhi": {
+    "prefix": [
+      "defhi",
+      "hi"
+    ],
+    "body": "def handle_info({${1:MESSAGE}, ${2:PAYLOAD}}, state) do\n\t$0\n\t{:noreply, state}\nend",
+    "description": "shorthand for handle_event"
+  },
+  "defhe": {
+    "prefix": [
+      "defhe",
+      "he"
+    ],
+    "body": "def handle_event(\"${1:EVENT_NAME}\", %{\"${2:PAYLOAD_KEY}\" => ${3:PAYLOAD_VAR}}, socket) do\n\t$0\n\t{:noreply, socket}\nend",
+    "description": "shorthand for handle_event"
+  },
+  "genserv": {
+    "prefix": [
+      "genserv",
+      "gs"
+    ],
+    "body": "use GenServer\n\n# ---- Client\n\ndef start_link(state) do\n\tGenServer.start_link(__MODULE__, state)\n\nend\n\n# ---- Server\n\n@impl GenServer\ndef init(state) do\n\t{:ok, state}\nend\n\ndefp reply(reply, state), do: {:reply, reply, state}\ndefp noreply(state), do: {:noreply, state}",
+    "description": "shorthand for GenServer scaffolding. Use inside of an empty module"
+  },
+  "hcall": {
+    "prefix": [
+      "defhcall",
+      "hcall"
+    ],
+    "body": "@impl GenServer\ndef handle_call({${1:MESSAGE}, ${2:PAYLOAD}}, _from, state) do\n\t${0:PAYLOAD}\n\t|> reply(state)\nend",
+    "description": "shorthand for handle_call. Note: requires also using the \"reply / rep\" snippet"
+  },
+  "hcast": {
+    "prefix": [
+      "defhcast",
+      "hcast"
+    ],
+    "body": "@impl GenServer\ndef handle_cast({${1:MESSAGE}, ${2:PAYLOAD}}, state) do\n\tstate$0\n\t|> noreply()\nend",
+    "description": "shorthand for handle_cast. Note: requires also using the \"noreply / norep\" snippet"
+  },
+  "reply": {
+    "prefix": [
+      "reply",
+      "rep"
+    ],
+    "body": "defp reply(reply, state), do: {:reply, reply, state}"
+  },
+  "noreply": {
+    "prefix": [
+      "noreply",
+      "norep"
+    ],
+    "body": "defp noreply(state), do: {:noreply, state}"
+  }
+}

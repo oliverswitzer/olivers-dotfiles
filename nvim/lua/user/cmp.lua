@@ -8,8 +8,14 @@ if not snip_status_ok then
   return
 end
 
+luasnip.cleanup()
+
 luasnip.filetype_extend("elixir", {"html"})
-require("luasnip/loaders/from_vscode").lazy_load()
+luasnip.filetype_extend("javascriptreact", {"html"})
+luasnip.filetype_extend("typescriptreact", {"html"})
+
+vim.opt.runtimepath = vim.opt.runtimepath + '~/.config/nvim/snippets,'
+require("luasnip/loaders/from_vscode").load()
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
