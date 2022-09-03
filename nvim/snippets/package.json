@@ -8,6 +8,22 @@
       {
         "language": "elixir",
         "path": "./snippets/elixir.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascriptreact.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescriptreact.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
       }
     ]
   }
