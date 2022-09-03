@@ -186,6 +186,8 @@ install_brew_dep 'the_silver_searcher'
 install_brew_dep 'ripgrep'
 install_brew_dep 'gh'
 install_brew_dep 'pulumi'
+install_brew_dep 'thefuck'
+
 brew tap heroku/brew
 install_brew_dep 'heroku'
 
