@@ -65,7 +65,7 @@
 			<key>ecto</key>
 			<dict>
 				<key>date</key>
-				<date>2022-05-11T20:21:16Z</date>
+				<date>2022-06-04T17:48:46Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -79,7 +79,7 @@
 			<key>ecto_sql</key>
 			<dict>
 				<key>date</key>
-				<date>2022-05-02T16:51:35Z</date>
+				<date>2022-06-04T17:48:45Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -107,7 +107,7 @@
 			<key>floki</key>
 			<dict>
 				<key>date</key>
-				<date>2022-03-31T14:23:54Z</date>
+				<date>2022-07-21T20:36:23Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -121,7 +121,7 @@
 			<key>guardian</key>
 			<dict>
 				<key>date</key>
-				<date>2022-03-31T14:23:54Z</date>
+				<date>2022-09-02T20:03:40Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -135,7 +135,7 @@
 			<key>gun</key>
 			<dict>
 				<key>date</key>
-				<date>2022-01-05T18:05:02Z</date>
+				<date>2022-08-15T01:21:43Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -149,7 +149,7 @@
 			<key>hammox</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:09Z</date>
+				<date>2022-07-25T14:27:58Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -177,7 +177,7 @@
 			<key>httpoison</key>
 			<dict>
 				<key>date</key>
-				<date>2022-03-31T14:23:54Z</date>
+				<date>2022-08-08T15:41:15Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -205,7 +205,7 @@
 			<key>mox</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:07Z</date>
+				<date>2022-06-01T15:16:00Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -219,7 +219,7 @@
 			<key>oban</key>
 			<dict>
 				<key>date</key>
-				<date>2022-04-23T20:04:57Z</date>
+				<date>2022-08-20T15:29:25Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -233,7 +233,7 @@
 			<key>opentelemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2022-05-14T21:25:08Z</date>
+				<date>2022-09-02T20:03:40Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -247,7 +247,7 @@
 			<key>opentelemetry_api</key>
 			<dict>
 				<key>date</key>
-				<date>2022-05-02T16:51:36Z</date>
+				<date>2022-09-01T16:22:34Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -261,7 +261,7 @@
 			<key>phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2022-05-11T20:21:15Z</date>
+				<date>2022-07-21T20:36:23Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -317,7 +317,7 @@
 			<key>phoenix_live_view</key>
 			<dict>
 				<key>date</key>
-				<date>2022-04-07T15:09:12Z</date>
+				<date>2022-07-21T20:36:23Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -401,7 +401,7 @@
 			<key>temple</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:25Z</date>
+				<date>2022-09-02T20:03:40Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -415,7 +415,7 @@
 			<key>timex</key>
 			<dict>
 				<key>date</key>
-				<date>2022-05-04T16:51:37Z</date>
+				<date>2022-08-09T15:41:19Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -429,7 +429,7 @@
 			<key>ueberauth</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:12Z</date>
+				<date>2022-08-17T05:16:45Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -457,7 +457,7 @@
 			<key>wallaby</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:24Z</date>
+				<date>2022-07-21T20:36:25Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -515,7 +515,7 @@
 		<dict/>
 	</dict>
 	<key>DHWKWebViewTextSizeMultiplier</key>
-	<real>1.1999998092651367</real>
+	<real>1.0499999523162842</real>
 	<key>actuallyDarkWebView</key>
 	<true/>
 	<key>docsets</key>
