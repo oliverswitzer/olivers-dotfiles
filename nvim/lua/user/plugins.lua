@@ -50,9 +50,10 @@ return packer.startup(function(use)
   use {"mg979/vim-visual-multi", branch='master'} -- Multi-selection using Ctrl + N
   use {"mbbill/undotree"} -- Shows undo history tracked by built-in :earlier and :later commands
 
-  use {"tpope/vim-dadbod"}
   use {"kristijanhusak/vim-dadbod-ui"}
   use {"tpope/vim-dotenv"}
+  use {"tpope/vim-dadbod"}
+  use {"tpope/vim-abolish"}
   use {"brooth/far.vim"}
 
   -- Use g<, g> to swap parameters in a function https://github.com/machakann/vim-swap
@@ -76,7 +77,6 @@ return packer.startup(function(use)
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
   use "lukas-reineke/indent-blankline.nvim"
