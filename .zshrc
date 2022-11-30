@@ -21,6 +21,7 @@ export ZSH="$HOME/.oh-my-zsh"
 #else
 ZSH_THEME="powerlevel10k/powerlevel10k"
 #fi
+KUBECONFIG=$HOME/.kube/config
 
 
 # Set list of themes to pick from when loading at random
