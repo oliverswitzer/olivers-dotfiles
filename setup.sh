@@ -208,8 +208,10 @@ install_brew_dep 'visual-studio-code' --cask
 install_brew_dep 'google-cloud-sdk' --cask
 install_brew_dep 'intellij-idea-ce' --cask
 install_brew_dep 'postgres-unofficial' --cask # https://postgresapp.com/
-install_brew_dep 'macdown' --cask # https://postgresapp.com/
-install_brew_dep 'keycastr' --cask # https://postgresapp.com/
+install_brew_dep 'macdown' --cask 
+install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing 
+install_brew_dep 'appcleaner' --cask  # Easily delete apps and their cache / preference files
+install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings via the "profiles" feature. Useful for Kinesis keyboard mapping.
 
 # Utilities
 install_brew_dep 'stats' --cask
