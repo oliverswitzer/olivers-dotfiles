@@ -86,6 +86,7 @@ local mappings = {
     v = {"<cmd> :AV<CR>", "Go to test with vertical split"},
     f = {"<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>", "Find all files"},
     d = {"<cmd>:DBUI<CR>", "Query Database"},
+    s = {"<cmd>:Telescope luasnip<CR>", "Search snippets for current buffer"} 
   },
   ["d"] = {
     name = "Diagnostics (Trouble)",

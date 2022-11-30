@@ -43,6 +43,7 @@ return packer.startup(function(use)
   -- Oliver's plugins
   -- Following three plugins are for quick navigation between elixir test and src
   -- files. See https://github.com/andyl/vim-projectionist-elixir. Tag: go to test
+  use { "benfowler/telescope-luasnip.nvim" }
   use {'tpope/vim-projectionist'}
   use {'c-brenn/fuzzy-projectionist.vim'}
   use {'andyl/vim-projectionist-elixir'}

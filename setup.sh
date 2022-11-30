@@ -104,7 +104,6 @@ symlink_dotfile '.tool-versions' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
-symlink_dotfile '.snippets' $HOME
 symlink_dotfile '.hammerspoon' $HOME
 
 install_brew_dep 'neovim'
