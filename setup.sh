@@ -217,6 +217,7 @@ install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings 
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
 
+
 # shiftit keeps getting broken on updates to MacOS, so I've switched over to
 # using Hammerspoon in combination with a hammerspoon-shiftit configuration.
 #   See:
@@ -229,5 +230,10 @@ install_brew_dep 'hammerspoon' --cask
 install_brew_dep 'flux' --cask
 install_brew_dep 'vlc' --cask
 install_brew_dep 'spotify' --cask
+
+echo "Done installing brew cask tools!"
+echo "Here's a list of tools that you use that do not exist in Homebrew"
+echo "* wireguard: https://www.wireguard.com/install/"
+echo "* displaylink manager for multiple monitors (to be used in tandem with the dual displaylink USB-C adapter): https://www.synaptics.com/products/displaylink-graphics/downloads/macos"
 
 # END: Brew Dependencies
