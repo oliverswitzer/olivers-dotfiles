@@ -51,7 +51,7 @@
 			<key>db_connection</key>
 			<dict>
 				<key>date</key>
-				<date>2022-03-04T16:49:41Z</date>
+				<date>2022-11-28T15:28:44Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -65,7 +65,7 @@
 			<key>ecto</key>
 			<dict>
 				<key>date</key>
-				<date>2022-06-04T17:48:46Z</date>
+				<date>2022-11-18T00:12:01Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -79,7 +79,7 @@
 			<key>ecto_sql</key>
 			<dict>
 				<key>date</key>
-				<date>2022-06-04T17:48:45Z</date>
+				<date>2022-11-18T00:12:00Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -107,7 +107,7 @@
 			<key>floki</key>
 			<dict>
 				<key>date</key>
-				<date>2022-07-21T20:36:23Z</date>
+				<date>2022-11-08T20:39:51Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -121,7 +121,7 @@
 			<key>guardian</key>
 			<dict>
 				<key>date</key>
-				<date>2022-09-02T20:03:40Z</date>
+				<date>2022-11-28T15:28:44Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -191,7 +191,7 @@
 			<key>jason</key>
 			<dict>
 				<key>date</key>
-				<date>2022-01-05T17:51:57Z</date>
+				<date>2022-10-17T01:15:40Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -219,7 +219,7 @@
 			<key>oban</key>
 			<dict>
 				<key>date</key>
-				<date>2022-08-20T15:29:25Z</date>
+				<date>2022-11-28T15:28:46Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -233,7 +233,7 @@
 			<key>opentelemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2022-09-02T20:03:40Z</date>
+				<date>2022-10-20T14:16:10Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -247,7 +247,7 @@
 			<key>opentelemetry_api</key>
 			<dict>
 				<key>date</key>
-				<date>2022-09-01T16:22:34Z</date>
+				<date>2022-10-20T14:16:14Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -261,7 +261,7 @@
 			<key>phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2022-07-21T20:36:23Z</date>
+				<date>2022-11-08T20:39:58Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -317,7 +317,7 @@
 			<key>phoenix_live_view</key>
 			<dict>
 				<key>date</key>
-				<date>2022-07-21T20:36:23Z</date>
+				<date>2022-11-08T20:39:51Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -331,7 +331,7 @@
 			<key>plug</key>
 			<dict>
 				<key>date</key>
-				<date>2022-03-11T01:41:33Z</date>
+				<date>2022-11-08T20:39:51Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -401,7 +401,7 @@
 			<key>temple</key>
 			<dict>
 				<key>date</key>
-				<date>2022-09-02T20:03:40Z</date>
+				<date>2022-09-21T22:47:46Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -429,7 +429,7 @@
 			<key>ueberauth</key>
 			<dict>
 				<key>date</key>
-				<date>2022-08-17T05:16:45Z</date>
+				<date>2022-09-15T06:17:47Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -443,7 +443,7 @@
 			<key>ueberauth_google</key>
 			<dict>
 				<key>date</key>
-				<date>2021-12-03T00:41:25Z</date>
+				<date>2022-09-24T17:34:09Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
