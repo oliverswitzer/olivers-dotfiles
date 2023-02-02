@@ -65,7 +65,7 @@
 			<key>ecto</key>
 			<dict>
 				<key>date</key>
-				<date>2022-11-18T00:12:01Z</date>
+				<date>2022-12-24T20:09:54Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -79,7 +79,7 @@
 			<key>ecto_sql</key>
 			<dict>
 				<key>date</key>
-				<date>2022-11-18T00:12:00Z</date>
+				<date>2022-12-24T20:09:51Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -177,7 +177,7 @@
 			<key>httpoison</key>
 			<dict>
 				<key>date</key>
-				<date>2022-08-08T15:41:15Z</date>
+				<date>2023-01-23T03:57:44Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -219,7 +219,7 @@
 			<key>oban</key>
 			<dict>
 				<key>date</key>
-				<date>2022-11-28T15:28:46Z</date>
+				<date>2023-01-27T11:37:04Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -233,7 +233,7 @@
 			<key>opentelemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2022-10-20T14:16:10Z</date>
+				<date>2023-01-10T07:36:01Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -247,7 +247,7 @@
 			<key>opentelemetry_api</key>
 			<dict>
 				<key>date</key>
-				<date>2022-10-20T14:16:14Z</date>
+				<date>2022-12-24T20:09:51Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -261,7 +261,7 @@
 			<key>phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2022-11-08T20:39:58Z</date>
+				<date>2023-01-13T18:38:58Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -317,7 +317,7 @@
 			<key>phoenix_live_view</key>
 			<dict>
 				<key>date</key>
-				<date>2022-11-08T20:39:51Z</date>
+				<date>2023-01-19T21:41:34Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -370,10 +370,24 @@
 					<string>porcelain</string>
 				</dict>
 			</dict>
+			<key>postgrex</key>
+			<dict>
+				<key>date</key>
+				<date>2023-01-10T16:51:49Z</date>
+				<key>entry</key>
+				<dict>
+					<key>name</key>
+					<string>postgrex</string>
+					<key>platform</key>
+					<string>hex</string>
+					<key>uniqueIdentifier</key>
+					<string>postgrex</string>
+				</dict>
+			</dict>
 			<key>telemetry</key>
 			<dict>
 				<key>date</key>
-				<date>2022-04-03T02:13:22Z</date>
+				<date>2023-01-13T18:38:57Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -401,7 +415,7 @@
 			<key>temple</key>
 			<dict>
 				<key>date</key>
-				<date>2022-09-21T22:47:46Z</date>
+				<date>2023-01-22T03:57:44Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
