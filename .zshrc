@@ -164,3 +164,5 @@ function killall {
     kill -9 $p
   done
 }
+
+. ~/.asdf/plugins/java/set-java-home.zsh
