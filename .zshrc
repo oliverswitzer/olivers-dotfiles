@@ -135,6 +135,8 @@ export CLOUDSDK_PYTHON="$(brew --prefix)/opt/python@3.8/libexec/bin/python"
 
 # Geometer
 export GCP_ORGANIZATION_ID=717821974255
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 alias k="kubectl"
