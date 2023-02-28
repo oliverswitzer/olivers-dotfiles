@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use {'c-brenn/fuzzy-projectionist.vim'}
   use {'andyl/vim-projectionist-elixir'}
 
+  use {'Exafunction/codeium.vim'}
   use {"mg979/vim-visual-multi", branch='master'} -- Multi-selection using Ctrl + N
   use {"mbbill/undotree"} -- Shows undo history tracked by built-in :earlier and :later commands
 
