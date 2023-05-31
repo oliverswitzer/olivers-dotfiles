@@ -52,14 +52,14 @@ return packer.startup(function(use)
     "jcdickinson/codeium.nvim",
     requires = {
         "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
         "hrsh7th/nvim-cmp",
     },
     config = function()
         require("codeium").setup({
         })
     end
-}
+  }
+  --[[ use {"Exafunction/codeium.vim"} ]]
   use {"mg979/vim-visual-multi", branch='master'} -- Multi-selection using Ctrl + N
   use {"mbbill/undotree"} -- Shows undo history tracked by built-in :earlier and :later commands
 
