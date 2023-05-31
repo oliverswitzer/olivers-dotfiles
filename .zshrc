@@ -172,3 +172,4 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 . ~/.asdf/plugins/java/set-java-home.zsh
+export PATH=/Users/oliverswitzer/.local/bin:$PATH
