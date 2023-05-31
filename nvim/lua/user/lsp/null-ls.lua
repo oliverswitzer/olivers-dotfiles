@@ -11,7 +11,11 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier.with({ extra_args = {} }),
+    formatting.prettier.with({
+      filetypes = {
+        "json", "graphql", "markdown", "html", "javascriptreact", "typescriptreact", "markdown.mdx", "css", "scss", "jsonc", "less", "typescript", "javascript", "vue", "handlebars"
+      },
+    }),
 		formatting.black.with({ extra_args = { "--fast" } }),
     formatting.shfmt
     -- formatting.rustywind.with({
