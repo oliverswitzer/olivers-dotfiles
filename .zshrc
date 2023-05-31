@@ -157,6 +157,7 @@ alias ghprev="gh pr create --title 'Preview' --body 'Preview' --web"
 # Misc
 alias sshunsafe="ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\""
 alias clearswap="sudo pkill -HUP -u _windowserver"
+alias kctx="kubectl config current-context"
 
 unfunction work_in_progress
 
