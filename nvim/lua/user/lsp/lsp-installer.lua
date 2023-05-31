@@ -26,6 +26,17 @@ lsp_installer.on_server_ready(function(server)
 	 	opts = vim.tbl_deep_extend("force", tailwindcss_opts, opts)
 	 end
 
+  --[[ require("lspconfig").arduino_language_server.setup { ]]
+  --[[   cmd = { ]]
+  --[[       "arduino-language-server", ]]
+  --[[       "-clangd", "/usr/bin/clangd", ]]
+  --[[       "-cli", "/opt/homebrew/bin/arduino-cli", ]]
+  --[[       "-cli-config", "/Users/oliverswitzer/Library/Arduino15/arduino-cli.yaml", ]]
+  --[[       "-fqbn", "arduino:avr:nano" ]]
+  --[[   } ]]
+  --[[ } ]]
+  --[[]]
+  --[[]]
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(opts)

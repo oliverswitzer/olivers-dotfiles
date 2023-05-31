@@ -7,6 +7,7 @@ set -e
 # To use the new nvim-only based setup (ie no .vimrc, CoC or elixir-ls setup), run it with the --nvim-only flag
 #
 # $ ./setup.sh --nvim-only
+
 repo_dir=$(pwd)
 
 symlink_dotfile() {

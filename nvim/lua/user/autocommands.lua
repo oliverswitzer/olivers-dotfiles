@@ -47,7 +47,7 @@ vim.cmd [[
   " Autoformat
   augroup _lsp
     autocmd!
-    autocmd BufWritePre * lua vim.lsp.buf.formatting_seq_sync({}, 1000, { "null-ls" })
+    autocmd BufWritePre * lua vim.lsp.buf.format({}, 1000, { "null-ls" })
   augroup end
 
   " Set to auto read when a file is changed from the outside
