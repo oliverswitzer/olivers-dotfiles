@@ -160,6 +160,15 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
 fi
 
 # END: Install oh-my-zsh
+
+# BEGIN: Install Arduino-related tooling
+
+install_brew_dep 'arduino-cli'
+go install github.com/arduino/arduino-language-server@latest
+
+# END: Install Arduino-related tooling
+
+
 # BEGIN: Brew Dependencies
 
 ## Brew binaries
