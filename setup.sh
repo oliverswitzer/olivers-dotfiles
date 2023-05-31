@@ -81,6 +81,7 @@ echo "Installing asdf plugins"
 asdf plugin add erlang
 asdf plugin add golang
 asdf plugin add nodejs
+asdf plugin add ruby
 asdf plugin add postgres
 asdf plugin add elixir
 
