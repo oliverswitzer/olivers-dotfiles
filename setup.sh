@@ -197,6 +197,7 @@ install_brew_dep 'ripgrep'
 install_brew_dep 'gh'
 install_brew_dep 'pulumi'
 install_brew_dep 'thefuck'
+install_brew_dep 'tfk8s' # A tool for converting k8s manifests to terraform
 
 brew tap heroku/brew
 install_brew_dep 'heroku'
