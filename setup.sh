@@ -108,6 +108,9 @@ symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
 symlink_dotfile '.hammerspoon' $HOME
 
+echo "⚠️  IMPORTANT NOTE ⚠️"
+echo "Please copy .envrc.sample to ~/.envrc and fill out the values!"
+
 install_brew_dep 'neovim'
 mkdir -p ~/.config/nvim
 

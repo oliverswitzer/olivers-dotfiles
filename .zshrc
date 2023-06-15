@@ -5,6 +5,16 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+# Set the path to your .envrc file
+envrc_file="$HOME/.envrc"
+
+# Check if the .envrc file exists
+if [[ -f "$envrc_file" ]]; then
+  # Allow the .envrc file using direnv
+  source "$envrc_file"
+else
+  echo "$envrc_file does not exist"
+fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
