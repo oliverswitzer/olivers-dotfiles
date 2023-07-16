@@ -1,10 +1,17 @@
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+if [[ -x $(command -v direnv) ]]
+then
+    emulate zsh -c "$(direnv export zsh)"
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+if [[ -x $(command -v direnv) ]]
+then
+    emulate zsh -c "$(direnv hook zsh)"
+fi
+
 # Set the path to your .envrc file
 envrc_file="$HOME/.envrc"
 
@@ -16,10 +23,6 @@ else
   echo "$envrc_file does not exist"
 fi
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -29,8 +32,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # if [[ $__INTELLIJ_COMMAND_HISTFILE__ ]] then
 # ZSH_THEME="robbyrussell"
 #else
+#
 ZSH_THEME="powerlevel10k/powerlevel10k"
-#fi
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 KUBECONFIG=$HOME/.kube/config
 
 
@@ -136,7 +144,6 @@ export PROJECT_FOLDER="$HOME/workspace"
 
 # Modifies the :Files command from fzf.vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
-source "$HOME/workspace/dotfiles/dotfiles/zshrc.include"
 
 # This helps preserver history in Elixir's iex
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 2097152 -kernel shell_history_path '\"$HOME/.iex-history\"'"

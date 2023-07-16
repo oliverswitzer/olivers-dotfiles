@@ -4,9 +4,6 @@ set -e
 # 
 # $ ./setup.sh
 #
-# To use the new nvim-only based setup (ie no .vimrc, CoC or elixir-ls setup), run it with the --nvim-only flag
-#
-# $ ./setup.sh --nvim-only
 
 repo_dir=$(pwd)
 
@@ -23,7 +20,7 @@ symlink_dotfile() {
   fi
   if test -d "$dest_dotfile"; then
     echo "⚠️  $dest_dotfile dotfile directory already exists, recursively copying it to $file_name.bak"
-    cp -R $dest_dotfile{,.bak}
+    cp -fR $dest_dotfile $dest_dotfile.bak
   fi
 
   echo "Symlinking $repo_dotfile to $dest_dotfile..."
@@ -84,18 +81,19 @@ asdf plugin add nodejs
 asdf plugin add ruby
 asdf plugin add postgres
 asdf plugin add elixir
+asdf plugin add java
+asdf plugin add helm
+asdf plugin add postgres
 
 ## Python only necessary for a coc-snippet vim plugin...
 asdf plugin add python
+
+symlink_dotfile '.tool-versions' $HOME
+
+# KERL options might only be needed on intel machines
+KERL_CONFIGURE_OPTIONS="--without-wx" asdf install erlang
 asdf install
 set -e
-
-## Again, necessary for same vim plugin that uses neovim python wrapper
-pip install neovim
-
-## Install LiveBook
-mix escript.install hex livebook
-asdf reshim elixir
 
 # END: Set up ASDF
 
@@ -106,48 +104,23 @@ symlink_dotfile '.tool-versions' $HOME
 symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
+
+# A hack until I figure out why the symlink_dotfile function is broken for directories
+rm -rf ~/.hammerspoon{,.bak}
 symlink_dotfile '.hammerspoon' $HOME
+
 
 echo "⚠️  IMPORTANT NOTE ⚠️"
 echo "Please copy .envrc.sample to ~/.envrc and fill out the values!"
 
 install_brew_dep 'neovim'
+rm -rf ~/.config/nvim{,.bak}
 mkdir -p ~/.config/nvim
 
-if [[ $* == *--nvim-only* ]]; then;
-  echo "Installing new nvim-only setup, skipping copying .vimrc, coc and elixir-ls stuff...."
-  symlink_dotfile 'nvim' $HOME/.config/nvim
+# A hack until I figure out why the symlink_dotfile function is broken for directories
+symlink_dotfile 'nvim' $HOME/.config/nvim
 
-  # Used to sort tailwind class selectors
-  npm install -g rustywind
-else
-  symlink_dotfile '.vimrc' $HOME
-
-  ## Coc Config
-  mkdir -p ~/.config/nvim
-  symlink_dotfile 'coc-settings.json' $HOME/.config/nvim
-  symlink_dotfile 'init.vim' $HOME/.config/nvim
-
-  ## Install Vim plugins
-  nvim +'PlugInstall --sync' +qa
-
-  ## Install elixir-ls release
-  if [[ ! -d ~/.vim/plugged/coc-elixir/els-release ]]; then
-    echo "Downloading elixir-ls into $HOME/.elixir-ls" 
-
-    # Note that this elixir-ls release is hardcoded as 0.9.0 because I couldn't figure out
-    # how to download the latest release via Github urls
-    #
-    # It's also better to download the release from github than to try to build the elixir-lsp
-    # repo yourself to avoid backward compatibility issues with the OTP version
-    # you end up building elixir-ls version with and the project you use elixir-ls
-    # on
-    curl -L  https://github.com/elixir-lsp/elixir-ls/releases/download/v0.9.0/elixir-ls.zip
-    mkdir -p ~/.vim/plugged/coc-elixir/els-release 
-    unzip elixir-ls.zip -d ~/.vim/plugged/coc-elixir/els-release
-  fi
-fi
-
+install_brew_dep 'tmux'
 install_tmux
 
 # END: Dotfiles & Vim
@@ -157,12 +130,25 @@ install_tmux
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
+if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
   ## Install oh-my-zsh plugin for terminal UI: powerlevel10k
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  p10k configure
 fi
 
 # END: Install oh-my-zsh
+
+## Again, necessary for same vim plugin that uses neovim python wrapper
+pip3 install neovim
+
+## Install LiveBook
+mix escript.install hex livebook
+asdf reshim elixir
+
+# Used to sort tailwind class selectors
+npm install -g rustywind
 
 # BEGIN: Install Arduino-related tooling
 
@@ -176,10 +162,8 @@ go install github.com/arduino/arduino-language-server@latest
 
 ## Brew binaries
 
-install_brew_dep 'tmux'
 install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
-install_brew_dep 'postgresql'
 
 ## Alternative to cat that displays syntax highlighting and git changes
 install_brew_dep 'bat'
@@ -247,9 +231,19 @@ install_brew_dep 'flux' --cask
 install_brew_dep 'vlc' --cask
 install_brew_dep 'spotify' --cask
 
+# END: Brew Dependencies
+
+cat << "EOF"
+███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██████╗ 
+██╔════╝██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██╔══██╗
+█████╗  ██║██╔██╗ ██║██║███████╗███████║█████╗  ██║  ██║
+██╔══╝  ██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║  ██║
+██║     ██║██║ ╚████║██║███████║██║  ██║███████╗██████╔╝
+╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝
+EOF
+
 echo "Done installing brew cask tools!"
 echo "Here's a list of tools that you use that do not exist in Homebrew"
 echo "* wireguard: https://www.wireguard.com/install/"
 echo "* displaylink manager for multiple monitors (to be used in tandem with the dual displaylink USB-C adapter): https://www.synaptics.com/products/displaylink-graphics/downloads/macos"
 
-# END: Brew Dependencies

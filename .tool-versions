@@ -1,9 +1,10 @@
-erlang 24.1
+java oracle-18
+erlang 24.2
 elixir 1.14.4-otp-24
 nodejs 16.2.0
 golang 1.20
-java oracle-18
 helm 3.11.2
+postgres 14.0
 
 # Python only necessary for this Vim plugin https://github.com/SirVer/ultisnips
 python 3.10.2
