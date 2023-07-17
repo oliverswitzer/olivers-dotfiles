@@ -212,6 +212,7 @@ install_brew_dep 'appcleaner' --cask         # Easily delete apps and their cach
 install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings via the "profiles" feature. Useful for Kinesis keyboard mapping.
 install_brew_dep 'arduino-ide' --cask
 install_brew_dep 'krisp' --cask
+open "https://fritzing.org/releases" # Check "Fritzing Personal Download link" in lastpass
 
 # Utilities
 install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
