@@ -183,6 +183,8 @@ install_brew_dep 'pulumi'
 install_brew_dep 'thefuck'
 install_brew_dep 'tfk8s' # A tool for converting k8s manifests to terraform
 install_brew_dep 'terraformer'
+install_brew_dep 'mas' # Used to install apps only available in the app store
+mas install 937984704  # Amphetamine
 
 brew tap heroku/brew
 install_brew_dep 'heroku'
@@ -205,15 +207,17 @@ install_brew_dep 'visual-studio-code' --cask
 install_brew_dep 'google-cloud-sdk' --cask
 install_brew_dep 'intellij-idea-ce' --cask
 install_brew_dep 'postgres-unofficial' --cask # https://postgresapp.com/
-install_brew_dep 'macdown' --cask 
-install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing 
-install_brew_dep 'appcleaner' --cask  # Easily delete apps and their cache / preference files
+install_brew_dep 'macdown' --cask
+install_brew_dep 'appcleaner' --cask         # Easily delete apps and their cache / preference files
 install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings via the "profiles" feature. Useful for Kinesis keyboard mapping.
+install_brew_dep 'arduino-ide' --cask
+install_brew_dep 'krisp' --cask
 
 # Utilities
+install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
-
+install_brew_dep 'bartender'
 
 # shiftit keeps getting broken on updates to MacOS, so I've switched over to
 # using Hammerspoon in combination with a hammerspoon-shiftit configuration.
@@ -230,7 +234,14 @@ install_brew_dep 'spotify' --cask
 
 # END: Brew Dependencies
 
-cat << "EOF"
+_user=$(who | grep console | awk '{ print $1 }')
+
+# Show battery percentage in toolbar
+sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
+# Show bluetooth menu in toolbar
+sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
+
+cat <<"EOF"
 ███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██████╗ 
 ██╔════╝██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██╔══██╗
 █████╗  ██║██╔██╗ ██║██║███████╗███████║█████╗  ██║  ██║
@@ -243,4 +254,3 @@ echo "Done installing brew cask tools!"
 echo "Here's a list of tools that you use that do not exist in Homebrew"
 echo "* wireguard: https://www.wireguard.com/install/"
 echo "* displaylink manager for multiple monitors (to be used in tandem with the dual displaylink USB-C adapter): https://www.synaptics.com/products/displaylink-graphics/downloads/macos"
-
