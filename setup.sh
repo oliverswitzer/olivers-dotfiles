@@ -1,71 +1,71 @@
 set -e
 
 # Run this script simply by executing it:
-# 
+#
 # $ ./setup.sh
 #
 
 repo_dir=$(pwd)
 
 symlink_dotfile() {
-  file_name=$1
-  dest_path=$2
+	file_name=$1
+	dest_path=$2
 
-  repo_dotfile=$repo_dir/$file_name
-  dest_dotfile=$dest_path/$file_name
+	repo_dotfile=$repo_dir/$file_name
+	dest_dotfile=$dest_path/$file_name
 
-  if test -f "$dest_dotfile"; then
-    echo "⚠️  $dest_dotfile dotfile already exists, copying it to $file_name.bak"
-    cp $dest_dotfile{,.bak}
-  fi
-  if test -d "$dest_dotfile"; then
-    echo "⚠️  $dest_dotfile dotfile directory already exists, recursively copying it to $file_name.bak"
-    cp -fR $dest_dotfile $dest_dotfile.bak
-  fi
+	if test -f "$dest_dotfile"; then
+		echo "⚠️  $dest_dotfile dotfile already exists, copying it to $file_name.bak"
+		cp $dest_dotfile{,.bak}
+	fi
+	if test -d "$dest_dotfile"; then
+		echo "⚠️  $dest_dotfile dotfile directory already exists, recursively copying it to $file_name.bak"
+		cp -fR $dest_dotfile $dest_dotfile.bak
+	fi
 
-  echo "Symlinking $repo_dotfile to $dest_dotfile..."
-  ln -sf $repo_dotfile $dest_dotfile
+	echo "Symlinking $repo_dotfile to $dest_dotfile..."
+	ln -sf $repo_dotfile $dest_dotfile
 }
 
 function install_brew_dep() {
-  formula=$1
-  optional_cask_flag=$2
+	formula=$1
+	optional_cask_flag=$2
 
-  if brew ls --versions $optional_cask_flag $formula > /dev/null; then
-    echo "✅ '$formula' is already installed"
-  else
-    echo "'$formula' is not installed"
-    echo "⏳ Installing '$formula'"
-    HOMEBREW_NO_AUTO_UPDATE=1 brew install $2 $formula
-    brew install $2 $formula
-  fi
+	if brew ls --versions $optional_cask_flag $formula >/dev/null; then
+		echo "✅ '$formula' is already installed"
+	else
+		echo "'$formula' is not installed"
+		echo "⏳ Installing '$formula'"
+		HOMEBREW_NO_AUTO_UPDATE=1 brew install $2 $formula
+		brew install $2 $formula
+	fi
 }
 
 function install_tmux() {
-  mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	mkdir ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-  # To install tmux plugins you need to start a temporary tmux session...
+	# To install tmux plugins you need to start a temporary tmux session...
 
-  # start a server but don't attach to it
-  tmux start-server
-  # create a new session but don't attach to it either
-  tmux new-session -d
-  # install the plugins
-  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
-  # killing the server is not required, I guess
-  tmux kill-server
+	# start a server but don't attach to it
+	tmux start-server
+	# create a new session but don't attach to it either
+	tmux new-session -d
+	# install the plugins
+	~/.tmux/plugins/tpm/scripts/install_plugins.sh
+	# killing the server is not required, I guess
+	tmux kill-server
 }
 
 # BEGIN: Install Homebrew
 
 set +e
 which -s brew
-if [[ $? != 0 ]] ; then
-  echo "Homebrew not installed. Installing homebrew..."
-  # Install Homebrew
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [[ $? != 0 ]]; then
+	echo "Homebrew not installed. Installing homebrew..."
+	# Install Homebrew
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-  brew update
+	brew update
 fi
 set -e
 
@@ -109,7 +109,6 @@ symlink_dotfile '.p10k.zsh' $HOME
 rm -rf ~/.hammerspoon{,.bak}
 symlink_dotfile '.hammerspoon' $HOME
 
-
 echo "⚠️  IMPORTANT NOTE ⚠️"
 echo "Please copy .envrc.sample to ~/.envrc and fill out the values!"
 
@@ -117,8 +116,7 @@ install_brew_dep 'neovim'
 rm -rf ~/.config/nvim{,.bak}
 mkdir -p ~/.config/nvim
 
-# A hack until I figure out why the symlink_dotfile function is broken for directories
-symlink_dotfile 'nvim' $HOME/.config/nvim
+symlink_dotfile 'nvim' $HOME/.config
 
 install_brew_dep 'tmux'
 install_tmux
@@ -128,14 +126,14 @@ install_tmux
 # BEGIN: Install oh-my-zsh
 
 if [[ ! -d ~/.oh-my-zsh ]]; then
-  echo "Installing oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	echo "Installing oh-my-zsh"
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
-  ## Install oh-my-zsh plugin for terminal UI: powerlevel10k
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  p10k configure
+	## Install oh-my-zsh plugin for terminal UI: powerlevel10k
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+	p10k configure
 fi
 
 # END: Install oh-my-zsh
@@ -156,7 +154,6 @@ install_brew_dep 'arduino-cli'
 go install github.com/arduino/arduino-language-server@latest
 
 # END: Install Arduino-related tooling
-
 
 # BEGIN: Brew Dependencies
 
