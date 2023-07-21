@@ -219,6 +219,7 @@ install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
 install_brew_dep 'bartender'
+install_brew_dep 'whaatsapp'
 
 # shiftit keeps getting broken on updates to MacOS, so I've switched over to
 # using Hammerspoon in combination with a hammerspoon-shiftit configuration.
