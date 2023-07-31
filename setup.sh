@@ -185,6 +185,7 @@ install_brew_dep 'tfk8s' # A tool for converting k8s manifests to terraform
 install_brew_dep 'terraformer'
 install_brew_dep 'mas' # Used to install apps only available in the app store
 mas install 937984704  # Amphetamine
+mas install 408981434  # iMovie
 
 brew tap heroku/brew
 install_brew_dep 'heroku'
