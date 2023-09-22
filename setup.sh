@@ -174,6 +174,7 @@ install_brew_dep 'chromedriver' --cask
 chromedriver_binary_path="$(brew info chromedriver | awk 'FNR==3 { print $0 }' | awk '{print $1}')/chromedriver"
 xattr -d com.apple.quarantine $chromedriver_binary_path
 
+install_brew_dep 'jq'
 install_brew_dep 'gpg2'
 install_brew_dep 'direnv'
 install_brew_dep 'the_silver_searcher'
@@ -216,6 +217,7 @@ install_brew_dep 'krisp' --cask
 open "https://fritzing.org/releases" # Check "Fritzing Personal Download link" in lastpass
 
 # Utilities
+install_brew_dep 'ffmpeg'
 install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
