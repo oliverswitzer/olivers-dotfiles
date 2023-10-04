@@ -134,7 +134,8 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
-        codeium = "[🤖 Codeium]"
+        codeium = "[🤖 Codeium]",
+        --[[ copilot = "[🦾 Copilot]" ]]
       })[entry.source.name]
       return vim_item
     end,
@@ -144,7 +145,8 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "codeium" }
+    { name = "codeium" },
+    --[[ { name = "copilot", group_index = 2 } ]]
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

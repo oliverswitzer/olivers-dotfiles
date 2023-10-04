@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use {'c-brenn/fuzzy-projectionist.vim'}
   use {'andyl/vim-projectionist-elixir'}
 
+  -- AI-related plugins
   use {
     "jcdickinson/codeium.nvim",
     requires = {
@@ -59,6 +60,22 @@ return packer.startup(function(use)
         })
     end
   }
+
+  --[[ use { ]]
+  --[[   "zbirenbaum/copilot.lua", ]]
+  --[[   cmd = "Copilot", ]]
+  --[[   event = "InsertEnter", ]]
+  --[[   config = function() ]]
+  --[[     require("copilot").setup({}) ]]
+  --[[   end, ]]
+  --[[ } ]]
+  --[[ use { ]]
+  --[[   "zbirenbaum/copilot-cmp", ]]
+  --[[   after = { "copilot.lua" }, ]]
+  --[[   config = function () ]]
+  --[[     require("copilot_cmp").setup() ]]
+  --[[   end ]]
+  --[[ } ]]
 
   use ({
     "Bryley/neoai.nvim",
