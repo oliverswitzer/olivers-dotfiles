@@ -163,6 +163,8 @@ alias vim="nvim"
 alias vi="nvim"
 alias vmerge="git mergetool -t vimdiff"
 alias watch="watch "
+alias tat="tmux attach -t"
+alias tnew"tmux new -s"
 
 # Kohort
 alias bc="./run-test ./bin/checks.sh"
