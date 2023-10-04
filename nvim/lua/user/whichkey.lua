@@ -69,7 +69,7 @@ local setup = {
   },
 }
 
-local opts = {
+local normal_opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -77,10 +77,30 @@ local opts = {
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
 }
+local visual_opts = {
+  mode = "v", -- VISUAL mode
+  prefix = "<leader>",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
 
-local mappings = {
+local visual_mappings = {
+  ["g"] = {
+    name = "Oliver's Keys",
+    l = {"<cmd>:OpenInGHFileLines<CR>", "Open Current Line"}
+  }
+}
+
+local normal_mappings = {
   ["o"] = {
     name = "Oliver's Keys", 
+    g = {
+      name = "Open in Github",
+      f = {"<cmd>:OpenInGHFile<CR>", "Open Current File"},
+      r = {"<cmd>:OpenInGHRepo<CR>", "Open Github Repo"},
+    },
     h = {"<cmd>UndotreeToggle<cr>", "Local history"},
     t = {"<cmd> :A<CR>", "Go to test"},
     v = {"<cmd> :AV<CR>", "Go to test with vertical split"},
@@ -199,4 +219,5 @@ local mappings = {
 }
 
 which_key.setup(setup)
-which_key.register(mappings, opts)
+which_key.register(normal_mappings, normal_opts)
+which_key.register(visual_mappings, visual_opts)
