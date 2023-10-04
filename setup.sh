@@ -91,7 +91,11 @@ asdf plugin add python
 symlink_dotfile '.tool-versions' $HOME
 
 # KERL options might only be needed on intel machines
-KERL_CONFIGURE_OPTIONS="--without-wx" asdf install erlang
+if [[ $(uname -m) == "x86_64" ]]; then
+	export KERL_CONFIGURE_OPTIONS="--without-wx"
+fi
+
+asdf install erlang
 asdf install
 set -e
 
