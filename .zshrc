@@ -192,3 +192,7 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 . ~/.asdf/plugins/java/set-java-home.zsh
 export PATH=/Users/oliverswitzer/.local/bin:$PATH
+export PATH=$PATH:/Applications/IntelliJ\ IDEA.app/Contents/MacOS
+export EDITOR=nvim
+export KUBE_EDITOR=nvim
+export AWS_DEFAULT_PROFILE=mo-omni
