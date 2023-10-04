@@ -148,13 +148,6 @@ asdf reshim elixir
 # Used to sort tailwind class selectors
 npm install -g rustywind
 
-# BEGIN: Install Arduino-related tooling
-
-install_brew_dep 'arduino-cli'
-go install github.com/arduino/arduino-language-server@latest
-
-# END: Install Arduino-related tooling
-
 # BEGIN: Brew Dependencies
 
 ## Brew binaries
@@ -207,7 +200,7 @@ install_brew_dep 'postman' --cask
 install_brew_dep 'zoom' --cask
 install_brew_dep 'visual-studio-code' --cask
 install_brew_dep 'google-cloud-sdk' --cask
-install_brew_dep 'intellij-idea-ce' --cask
+install_brew_dep 'intellij-idea' --cask
 install_brew_dep 'postgres-unofficial' --cask # https://postgresapp.com/
 install_brew_dep 'macdown' --cask
 install_brew_dep 'appcleaner' --cask         # Easily delete apps and their cache / preference files
@@ -215,6 +208,14 @@ install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings 
 install_brew_dep 'arduino-ide' --cask
 install_brew_dep 'krisp' --cask
 open "https://fritzing.org/releases" # Check "Fritzing Personal Download link" in lastpass
+
+# Oddly Good utilities
+
+install_brew_dep 'arduino-cli'
+go install github.com/arduino/arduino-language-server@latest
+install_brew_dep 'arduino' --cask
+install_brew_dep 'ultimaker-cura' --cask
+install_brew_dep 'anydesk' --cask
 
 # Utilities
 install_brew_dep 'ffmpeg'
@@ -247,7 +248,7 @@ sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple
 sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
 
 cat <<"EOF"
-███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██████╗ 
+███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██████╗
 ██╔════╝██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██╔══██╗
 █████╗  ██║██╔██╗ ██║██║███████╗███████║█████╗  ██║  ██║
 ██╔══╝  ██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║  ██║
