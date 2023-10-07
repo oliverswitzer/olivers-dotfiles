@@ -9,7 +9,6 @@ elif [ "$ARCHITECTURE" = "arm64" ]; then
 
   # Mysterious evil forces are adding homebrew to path too early
   export PATH="$(echo $PATH | sed 's/\/opt\/homebrew\/[^:]*://g')"
-  echo "Running on arm64"
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export LIBRARY_PATH=/opt/homebrew/lib
   export CPATH=/opt/homebrew/include
