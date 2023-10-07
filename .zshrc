@@ -139,6 +139,9 @@ source $ZSH/oh-my-zsh.sh
 p10kcolors() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
+whatsmyip(){
+  ifconfig | grep "inet " | awk '{print $2}' | tail -n1
+}
 
 export PROJECT_FOLDER="$HOME/workspace"
 
