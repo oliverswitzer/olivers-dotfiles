@@ -109,6 +109,9 @@ symlink_dotfile '.tmux.conf' $HOME
 symlink_dotfile '.gitconfig' $HOME
 symlink_dotfile '.p10k.zsh' $HOME
 
+mkdir -p $HOME/.config/karabiner
+symlink_dotfile 'karabiner.json' $HOME/.config/karabiner
+
 # A hack until I figure out why the symlink_dotfile function is broken for directories
 rm -rf ~/.hammerspoon{,.bak}
 symlink_dotfile '.hammerspoon' $HOME
