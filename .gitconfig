@@ -30,7 +30,7 @@
 	gst = git
 [user]
 	name = Oliver Switzer
-	email = oliver@geometer.io
+	email = oliverswitzer@gmail.com
 [pull]
 	ff = only
 [push]
