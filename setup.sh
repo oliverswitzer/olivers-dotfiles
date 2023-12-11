@@ -192,6 +192,8 @@ install_brew_dep 'heroku'
 install_brew_dep 'python@3.8'
 
 # Work-related
+install_brew_dep 'derailed/k9s/k9s'
+install_brew_dep 'cursor' --cask
 install_brew_dep 'docker' --cask
 install_brew_dep 'google-chrome' --cask
 install_brew_dep 'firefox' --cask
@@ -214,12 +216,12 @@ install_brew_dep 'krisp' --cask
 open "https://fritzing.org/releases" # Check "Fritzing Personal Download link" in lastpass
 
 # Oddly Good utilities
-
 install_brew_dep 'arduino-cli'
 go install github.com/arduino/arduino-language-server@latest
 install_brew_dep 'arduino' --cask
 install_brew_dep 'ultimaker-cura' --cask
 install_brew_dep 'anydesk' --cask
+install_brew_dep 'google-drive' --cask
 
 # Utilities
 install_brew_dep 'ffmpeg'
@@ -227,7 +229,7 @@ install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
 install_brew_dep 'bartender'
-install_brew_dep 'whaatsapp'
+install_brew_dep 'whatsapp'
 
 # shiftit keeps getting broken on updates to MacOS, so I've switched over to
 # using Hammerspoon in combination with a hammerspoon-shiftit configuration.
