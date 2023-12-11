@@ -76,6 +76,7 @@ install_brew_dep 'asdf'
 set +e
 echo "Installing asdf plugins"
 asdf plugin add erlang
+asdf plugin add terraform
 asdf plugin add golang
 asdf plugin add nodejs
 asdf plugin add ruby
@@ -128,6 +129,20 @@ symlink_dotfile 'nvim' $HOME/.config
 install_brew_dep 'tmux'
 install_tmux
 
+# BEGIN: Install LunarVim
+
+if [[ ! -d ~/.config/lvim]]; then
+  # Install cmake and luarocks for luaformatter
+  install_brew_dep cmake
+  install_brew_dep luarocks
+
+  # Install Rust for LunarVim
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+	echo "Installing LunarVim"
+  LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+fi
+
 # END: Dotfiles & Vim
 
 # BEGIN: Install oh-my-zsh
@@ -141,6 +156,7 @@ if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
 	## Install oh-my-zsh plugin for terminal UI: powerlevel10k
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 	p10k configure
+	echo 'ACTION NEEDED: Go download these fonts and use them in iTerm2: https://github.com/romkatv/powerlevel10k#manual-font-installation'
 fi
 
 # END: Install oh-my-zsh
@@ -149,8 +165,15 @@ fi
 pip3 install neovim
 
 ## Install LiveBook
-mix escript.install hex livebook
-asdf reshim elixir
+
+if ! command -v livebook &>/dev/null; then
+	# livebook is not installed
+	mix do local.rebar --force, local.hex --force
+	mix escript.install hex livebook
+	asdf reshim elixir
+else
+	echo "livebook is already installed."
+fi
 
 # Used to sort tailwind class selectors
 npm install -g rustywind
@@ -168,12 +191,7 @@ install_brew_dep 'bat'
 ## Used by null-ls language server to format bash
 install_brew_dep 'shfmt'
 
-install_brew_dep 'chromedriver' --cask
-
-## Unquarantine chromedriver because Apple hates Google
-chromedriver_binary_path="$(brew info chromedriver | awk 'FNR==3 { print $0 }' | awk '{print $1}')/chromedriver"
-xattr -d com.apple.quarantine $chromedriver_binary_path
-
+install_brew_dep 'tree'
 install_brew_dep 'jq'
 install_brew_dep 'gpg2'
 install_brew_dep 'direnv'
@@ -185,8 +203,6 @@ install_brew_dep 'thefuck'
 install_brew_dep 'tfk8s' # A tool for converting k8s manifests to terraform
 install_brew_dep 'terraformer'
 install_brew_dep 'mas' # Used to install apps only available in the app store
-mas install 937984704  # Amphetamine
-mas install 408981434  # iMovie
 
 brew tap heroku/brew
 install_brew_dep 'heroku'
@@ -217,6 +233,14 @@ install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings 
 install_brew_dep 'arduino-ide' --cask
 install_brew_dep 'krisp' --cask
 open "https://fritzing.org/releases" # Check "Fritzing Personal Download link" in lastpass
+
+# Apps only installable from the App store
+
+mas install 937984704  # Amphetamine
+mas install 408981434  # iMovie
+mas install 424389933  # Final Cut Pro
+mas install 634148309  # Logic Pro
+mas install 1451685025 # WireGuard
 
 # Oddly Good utilities
 install_brew_dep 'arduino-cli'
@@ -252,9 +276,9 @@ install_brew_dep 'spotify' --cask
 _user=$(who | grep console | awk '{ print $1 }')
 
 # Show battery percentage in toolbar
-sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
+# sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
 # Show bluetooth menu in toolbar
-sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
+# sudo -u $_user defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 18
 
 cat <<"EOF"
 ███████╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██████╗
