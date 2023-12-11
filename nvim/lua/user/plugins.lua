@@ -47,6 +47,7 @@ return packer.startup(function(use)
   use {'tpope/vim-projectionist'}
   use {'c-brenn/fuzzy-projectionist.vim'}
   use {'andyl/vim-projectionist-elixir'}
+  use {'iamcco/markdown-preview.nvim', run = function() vim.fn["mkdp#util#install"]() end}
 
   -- AI-related plugins
   use {
