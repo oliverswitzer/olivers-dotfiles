@@ -198,4 +198,11 @@ export PATH=/Users/oliverswitzer/.local/bin:$PATH
 export PATH=$PATH:/Applications/IntelliJ\ IDEA.app/Contents/MacOS
 export EDITOR=nvim
 export KUBE_EDITOR=nvim
-export AWS_DEFAULT_PROFILE=mo-omni
+
+# Omni-related
+export AWS_PROFILE="AdministratorAccess-764897506820"
+export AWS_DEFAULT_REGION=us-east-1
+
+alias jacc='ssh acc-jump-box -N -L 15432:acc-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
+alias jprod='ssh prod-jump-box -N -L 15433:prd-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
+alias omnistart="dcu -d && ./bin/setup-local-worldtrak-replication.sh && mix ecto.setup && mix omni.import_airtrak && mix phx.server"
