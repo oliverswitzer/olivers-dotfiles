@@ -105,6 +105,7 @@ lvim.plugins = {
   {
     "tpope/vim-dadbod",
   },
+  { "tpope/vim-fugitive" },
   {
     "tpope/vim-abolish",
   },
