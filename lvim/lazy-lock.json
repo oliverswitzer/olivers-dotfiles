@@ -8,7 +8,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "0e6b2ed705ddcff9738ec4ea838141654f12eeef" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
-  "codeium.nvim": { "branch": "main", "commit": "fd9c9030d402baf2a01cc9db08c39772c0a60324" },
+  "codeium.nvim": { "branch": "main", "commit": "a0d43300f9a17a6ac775947ae4fb6b99ac5a92d0" },
   "far.vim": { "branch": "master", "commit": "5ad7d647434c7d89f715afa5aeae46e5441d32b3" },
   "friendly-snippets": { "branch": "main", "commit": "631f79e346b0b3203d2ce3eae619ca8d612e5463" },
   "fuzzy-projectionist.vim": { "branch": "master", "commit": "fa0ee95ee55aa0f6b806f961886e95ecd7de993a" },
