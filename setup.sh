@@ -141,6 +141,12 @@ if [[ ! -d ~/.config/lvim]]; then
 
 	echo "Installing LunarVim"
   LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+
+  mkdir -p ~/.config/lvim
+
+  symlink_dotfile lvim/config.lua $HOME/.config
+  symlink_dotfile lvim/lazy-lock.json $HOME/.config
+  symlink_dotfile lvim/lv-settings.lua $HOME/.config
 fi
 
 # END: Dotfiles & Vim

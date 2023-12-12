@@ -162,8 +162,8 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 alias k="kubectl"
 
 # Editor
-alias vim="nvim"
-alias vi="nvim"
+alias vim="lvim"
+alias vi="lvim"
 alias vmerge="git mergetool -t vimdiff"
 alias watch="watch "
 alias tat="tmux attach -t"
