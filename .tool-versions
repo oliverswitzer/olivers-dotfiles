@@ -7,6 +7,7 @@ helm 3.11.2
 postgres 14.0
 ruby 3.1.0
 terraform 1.4.2
+direnv 2.32.3
 
 # Python only necessary for this Vim plugin https://github.com/SirVer/ultisnips
 python 3.10.2

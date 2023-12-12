@@ -1,8 +1,3 @@
-if [[ -x $(command -v direnv) ]]
-then
-    emulate zsh -c "$(direnv export zsh)"
-fi
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -11,6 +6,7 @@ if [[ -x $(command -v direnv) ]]
 then
     emulate zsh -c "$(direnv hook zsh)"
 fi
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
 # Set the path to your .envrc file
 envrc_file="$HOME/.envrc"
@@ -206,3 +202,4 @@ export AWS_DEFAULT_REGION=us-east-1
 alias jacc='ssh acc-jump-box -N -L 15432:acc-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
 alias jprod='ssh prod-jump-box -N -L 15433:prd-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
 alias omnistart="dcu -d && ./bin/setup-local-worldtrak-replication.sh && mix ecto.setup && mix omni.import_airtrak && mix phx.server"
+
