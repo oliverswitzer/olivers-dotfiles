@@ -224,6 +224,7 @@ install_brew_dep 'firefox' --cask
 install_brew_dep 'dash' --cask
 install_brew_dep 'slack' --cask
 install_brew_dep 'tandem' --cask
+install_brew_dep 'tuple' --cask
 install_brew_dep 'iterm2' --cask
 install_brew_dep '1password' --cask
 install_brew_dep 'postman' --cask
@@ -275,6 +276,7 @@ install_brew_dep 'hammerspoon' --cask
 install_brew_dep 'flux' --cask
 install_brew_dep 'vlc' --cask
 install_brew_dep 'spotify' --cask
+install_breW_dep 'blackhole-2ch' --cask
 
 # END: Brew Dependencies
 
