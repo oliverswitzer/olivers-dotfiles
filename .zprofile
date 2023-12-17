@@ -8,7 +8,7 @@ elif [ "$ARCHITECTURE" = "arm64" ]; then
   . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
   # Mysterious evil forces are adding homebrew to path too early
-  export PATH="$(echo $PATH | sed 's/\/opt\/homebrew\/[^:]*://g')"
+  # export PATH="$(echo $PATH | sed 's/\/opt\/homebrew\/[^:]*://g')"
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export LIBRARY_PATH=/opt/homebrew/lib
   export CPATH=/opt/homebrew/include
