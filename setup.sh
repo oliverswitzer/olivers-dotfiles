@@ -216,6 +216,7 @@ install_brew_dep 'heroku'
 install_brew_dep 'python@3.8'
 
 # Work-related
+install_brew_dep 'tailscale' --cask
 install_brew_dep 'derailed/k9s/k9s'
 install_brew_dep 'cursor' --cask
 install_brew_dep 'docker' --cask
