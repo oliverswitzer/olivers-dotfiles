@@ -3,7 +3,12 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
+lvim.version = "stable"
+lvim.log.level = "info"
 lvim.format_on_save.enabled = true
+lvim.colorscheme = "lunar"
+lvim.builtin.project.active = false
+lvim.builtin.nvimtree.setup.view = { side = "left", width = 30, adaptive_size = true }
 
 lvim.builtin.which_key.mappings["o"] = {
   name = "Oliver's Keys",
@@ -20,8 +25,41 @@ lvim.builtin.which_key.mappings["o"] = {
   s = { "<cmd>:Telescope luasnip<CR>", "Search snippets for current buffer" }
 }
 
---- Keymaps
+--- KEYMAPS ---
 
+-- Easier saving
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+-- Run test helpers
+vim.cmd('let test#strategy = "vimux"')
+lvim.keys.normal_mode["<C-t><C-n>"] = ":w <bar> TestNearest<cr>"
+lvim.keys.normal_mode["<C-t><C-f>"] = ":w <bar> TestFile<cr>"
+lvim.keys.normal_mode["<C-t><C-t>"] = ":w <bar> TestLast<cr>"
+lvim.keys.normal_mode["<C-t><C-l>"] = ":w <bar> TestLast<cr>"
+lvim.keys.normal_mode["<C-t><C-s>"] = ":w <bar> TestSuite<cr>"
+
+-- Diagnostic key mappings for LunarVim
+lvim.keys.normal_mode["gl"] = "<cmd>lua vim.diagnostic.open_float()<CR>"
+lvim.keys.normal_mode["[d"] = '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>'
+lvim.keys.normal_mode["]d"] = '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>'
+lvim.keys.normal_mode["[e"] =
+'<cmd>lua vim.diagnostic.goto_prev({ border = "rounded", severity = vim.diagnostic.severity.ERROR })<CR>'
+lvim.keys.normal_mode["]e"] =
+'<cmd>lua vim.diagnostic.goto_next({ border = "rounded", severity = vim.diagnostic.severity.ERROR})<CR>'
+lvim.keys.normal_mode["<leader>q"] = "<cmd>lua vim.diagnostic.setloclist()<CR>"
+
+-- Next git hunk navigation
+lvim.keys.normal_mode["]c"] = ":Gitsigns next_hunk<CR>"
+lvim.keys.normal_mode["[c"] = ":Gitsigns prev_hunk<CR>"
+
+-- If text is selected, save it in the v buffer and send that buffer it to tmux
+lvim.keys.visual_mode["<C-c><C-c>"] = "\"vy :call VimuxRunCommand(@v, 0)<CR>"
+
+-- Select current paragraph and send it to tmux
+lvim.keys.normal_mode["<C-c><C-c>"] = "vip\"vy :call VimuxRunCommand(@v)<CR>"
+lvim.keys.normal_mode["<C-c><C-l>"] = ":wa <bar> VimuxRunLastCommand<CR>"
+
+-- Easier navigation between vim panes
 lvim.keys.normal_mode["<C-h>"] = "<C-w>h"
 lvim.keys.normal_mode["<C-j>"] = "<C-w>j"
 lvim.keys.normal_mode["<C-k>"] = "<C-w>k"
@@ -114,5 +152,11 @@ lvim.plugins = {
   },
   {
     "machakann/vim-swap",
-  }
+  },
+  { "vim-test/vim-test" },
+  { "preservim/vimux" }
 }
+
+-- Codeium AI helper
+lvim.builtin.cmp.formatting.source_names["codeium"] = "(Codeium)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "codeium" })
