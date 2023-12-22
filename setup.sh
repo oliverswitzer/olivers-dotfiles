@@ -222,7 +222,9 @@ install_brew_dep 'cursor' --cask
 install_brew_dep 'docker' --cask
 install_brew_dep 'google-chrome' --cask
 install_brew_dep 'firefox' --cask
-install_brew_dep 'dash' --cask
+#
+# Dash v6 and above ask for a subscription!
+install_brew_dep 'dash5' --cask
 install_brew_dep 'slack' --cask
 install_brew_dep 'tandem' --cask
 install_brew_dep 'tuple' --cask
@@ -239,10 +241,8 @@ install_brew_dep 'appcleaner' --cask         # Easily delete apps and their cach
 install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings via the "profiles" feature. Useful for Kinesis keyboard mapping.
 install_brew_dep 'arduino-ide' --cask
 install_brew_dep 'krisp' --cask
-open "https://fritzing.org/releases" # Check "Fritzing Personal Download link" in lastpass
 
 # Apps only installable from the App store
-
 mas install 937984704  # Amphetamine
 mas install 408981434  # iMovie
 mas install 424389933  # Final Cut Pro
