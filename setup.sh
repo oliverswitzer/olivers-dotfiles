@@ -298,7 +298,5 @@ cat <<"EOF"
 ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝
 EOF
 
-echo "Done installing brew cask tools!"
-echo "Here's a list of tools that you use that do not exist in Homebrew"
-echo "* wireguard: https://www.wireguard.com/install/"
-echo "* displaylink manager for multiple monitors (to be used in tandem with the dual displaylink USB-C adapter): https://www.synaptics.com/products/displaylink-graphics/downloads/macos"
++echo "Please see this guide for remaining manual steps!"
++open ./manual-install-notes.md
