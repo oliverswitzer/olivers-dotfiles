@@ -198,6 +198,7 @@ install_brew_dep 'bat'
 install_brew_dep 'shfmt'
 
 install_brew_dep 'tree'
+install_brew_dep 'flyctl'
 install_brew_dep 'jq'
 install_brew_dep 'gpg2'
 install_brew_dep 'the_silver_searcher'
