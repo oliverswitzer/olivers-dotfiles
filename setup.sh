@@ -210,6 +210,7 @@ install_brew_dep 'thefuck'
 install_brew_dep 'tfk8s' # A tool for converting k8s manifests to terraform
 install_brew_dep 'terraformer'
 install_brew_dep 'mas' # Used to install apps only available in the app store
+install_brew_dep sijanc147/formulas/macprefs  # Used to back up MacOS settings
 
 brew tap heroku/brew
 install_brew_dep 'heroku'
