@@ -4,6 +4,24 @@ set -e
 #
 # $ ./setup.sh
 #
+# or, to run and skip installing brew dependencies:
+#
+# $ ./setup.sh --skip-brew-deps
+
+skip_brew_deps=false
+
+for arg in "$@"; do
+  case $arg in
+    --skip-brew-deps)
+      skip_brew_deps=true
+      shift
+      ;;
+  esac
+done
+
+if [ "$skip_brew_deps" = true ]; then
+  echo "Skipping installation of brew dependencies"
+fi
 
 repo_dir=$(pwd)
 
@@ -28,6 +46,10 @@ symlink_dotfile() {
 }
 
 function install_brew_dep() {
+  if [ "$skip_brew_deps" = true ]; then
+		return
+	fi
+
 	formula=$1
 	optional_cask_flag=$2
 
@@ -52,8 +74,6 @@ function install_tmux() {
 	tmux new-session -d
 	# install the plugins
 	~/.tmux/plugins/tpm/scripts/install_plugins.sh
-	# killing the server is not required, I guess
-	tmux kill-server
 }
 
 # BEGIN: Install Homebrew
@@ -64,6 +84,8 @@ if [[ $? != 0 ]]; then
 	echo "Homebrew not installed. Installing homebrew..."
 	# Install Homebrew
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/oliverswitzer/.zprofile
+	    eval "$(/opt/homebrew/bin/brew shellenv)"
 else
 	brew update
 fi
@@ -85,6 +107,7 @@ asdf plugin add elixir
 asdf plugin add java
 asdf plugin add helm
 asdf plugin add postgres
+asdf plugin add direnv
 
 ## Python only necessary for a coc-snippet vim plugin...
 asdf plugin add python
@@ -117,72 +140,20 @@ symlink_dotfile 'karabiner.json' $HOME/.config/karabiner
 rm -rf ~/.hammerspoon{,.bak}
 symlink_dotfile '.hammerspoon' $HOME
 
-echo "⚠️  IMPORTANT NOTE ⚠️"
-echo "Please copy .envrc.sample to ~/.envrc and fill out the values!"
+if [ ! -f ~/.envrc ]; then
+  echo "⚠️  IMPORTANT NOTE ⚠️"
+  echo "Please fill out values in ~/.envrc!"
+  cp .envrc.sample ~/.envrc
+fi
 
+# Install neovim
 install_brew_dep 'neovim'
 rm -rf ~/.config/nvim{,.bak}
 mkdir -p ~/.config/nvim
 
 symlink_dotfile 'nvim' $HOME/.config
 
-install_brew_dep 'tmux'
-install_tmux
-
-# BEGIN: Install LunarVim
-
-if [[ ! -d ~/.config/lvim]]; then
-  # Install cmake and luarocks for luaformatter
-  install_brew_dep cmake
-  install_brew_dep luarocks
-
-  # Install Rust for LunarVim
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-	echo "Installing LunarVim"
-  LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
-
-  mkdir -p ~/.config/lvim
-
-  symlink_dotfile lvim/config.lua $HOME/.config
-  symlink_dotfile lvim/lazy-lock.json $HOME/.config
-  symlink_dotfile lvim/lv-settings.lua $HOME/.config
-fi
-
-# END: Dotfiles & Vim
-
-# BEGIN: Install oh-my-zsh
-
-if [[ ! -d ~/.oh-my-zsh ]]; then
-	echo "Installing oh-my-zsh"
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
-	## Install oh-my-zsh plugin for terminal UI: powerlevel10k
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-	p10k configure
-	echo 'ACTION NEEDED: Go download these fonts and use them in iTerm2: https://github.com/romkatv/powerlevel10k#manual-font-installation'
-fi
-
-# END: Install oh-my-zsh
-
-## Again, necessary for same vim plugin that uses neovim python wrapper
-pip3 install neovim
-
-## Install LiveBook
-
-if ! command -v livebook &>/dev/null; then
-	# livebook is not installed
-	mix do local.rebar --force, local.hex --force
-	mix escript.install hex livebook
-	asdf reshim elixir
-else
-	echo "livebook is already installed."
-fi
-
-# Used to sort tailwind class selectors
-npm install -g rustywind
+# END: Dotfiles
 
 # BEGIN: Brew Dependencies
 
@@ -225,8 +196,9 @@ install_brew_dep 'cursor' --cask
 install_brew_dep 'docker' --cask
 install_brew_dep 'google-chrome' --cask
 install_brew_dep 'firefox' --cask
-#
+
 # Dash v6 and above ask for a subscription!
+brew tap homebrew/cask-versions # Tap is necessary to download older version of Dash (dash5)
 install_brew_dep 'dash5' --cask
 install_brew_dep 'slack' --cask
 install_brew_dep 'tandem' --cask
@@ -245,12 +217,15 @@ install_brew_dep 'karabiner-elements' --cask # For easily switching keybindings 
 install_brew_dep 'arduino-ide' --cask
 install_brew_dep 'krisp' --cask
 
-# Apps only installable from the App store
-mas install 937984704  # Amphetamine
-mas install 408981434  # iMovie
-mas install 424389933  # Final Cut Pro
-mas install 634148309  # Logic Pro
-mas install 1451685025 # WireGuard
+if [ "$skip_brew_deps" = false ]; then
+  echo "Skipping installation of Mac App store dependencies... (skip-brew-deps also skips `mas` installs)"
+  # Apps only installable from the App store
+  mas install 937984704  # Amphetamine
+  mas install 408981434  # iMovie
+  mas install 424389933  # Final Cut Pro
+  mas install 634148309  # Logic Pro
+  mas install 1451685025 # WireGuard
+fi
 
 # Oddly Good utilities
 install_brew_dep 'arduino-cli'
@@ -282,6 +257,72 @@ install_brew_dep 'spotify' --cask
 install_brew_dep 'blackhole-2ch' --cask
 
 # END: Brew Dependencies
+install_brew_dep 'tmux'
+install_tmux
+
+# BEGIN: Install LunarVim
+
+if [[ ! -d ~/.config/lvim ]]; then
+  # Install cmake and luarocks for luaformatter
+  install_brew_dep cmake
+  install_brew_dep luarocks
+
+  # Install Rust for LunarVim
+  if ! command -v rustc &>/dev/null; then
+    echo "Installing Rust"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source ~/.zshrc
+  else
+    echo "Rust is already installed"
+  fi
+
+  echo "Installing lvim"
+  export LV_BRANCH='release-1.3/neovim-0.9'
+  bash -c "$(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)"
+
+  mkdir -p ~/.config/lvim
+
+  symlink_dotfile lvim/config.lua $HOME/.config
+  symlink_dotfile lvim/lazy-lock.json $HOME/.config
+  symlink_dotfile lvim/lv-settings.lua $HOME/.config
+fi
+
+# END: Dotfiles & Vim
+
+# BEGIN: Install oh-my-zsh
+
+if [[ ! -d ~/.oh-my-zsh ]]; then
+	echo "Installing oh-my-zsh"
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
+	## Install oh-my-zsh plugin for terminal UI: powerlevel10k
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+	source ~/.zshrc
+	p10k configure
+	echo 'ACTION NEEDED: Go download these fonts and use them in iTerm2: https://github.com/romkatv/powerlevel10k#manual-font-installation'
+fi
+
+# END: Install oh-my-zsh
+
+## Again, necessary for same vim plugin that uses neovim python wrapper
+pip3 install neovim
+
+## Install LiveBook
+
+if ! command -v livebook &>/dev/null; then
+	# livebook is not installed
+	mix do local.rebar --force, local.hex --force
+	mix escript.install hex livebook
+	asdf reshim elixir
+else
+	echo "livebook is already installed."
+fi
+
+# Used to sort tailwind class selectors
+npm install -g rustywind
+
 
 _user=$(who | grep console | awk '{ print $1 }')
 

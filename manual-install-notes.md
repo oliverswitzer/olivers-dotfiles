@@ -17,3 +17,7 @@ open "https://drive.google.com/drive/folders/1oHmVzp69sv16xqpgjw2rJdM-1N1RIoEz?u
 To import Docsets, go to "Settings > General" and then hit "Set Up Syncing..." at the very bottom
 
 Hit "Set Sync Folder" and set it to the ./dash-docsets/Dash.dashsync folder in this repo.
+
+## Create initital tmux ressurect session
+
+From within a tmux session, hit Ctrl-B + Ctrl-s to save an initial tmux session. All future sessions with be automatically persisted.
