@@ -197,6 +197,7 @@ install_brew_dep 'bat'
 ## Used by null-ls language server to format bash
 install_brew_dep 'shfmt'
 
+install_brew_dep 'ffmpeg'
 install_brew_dep 'tree'
 install_brew_dep 'flyctl'
 install_brew_dep 'jq'
@@ -259,12 +260,11 @@ install_brew_dep 'anydesk' --cask
 install_brew_dep 'google-drive' --cask
 
 # Utilities
-install_brew_dep 'ffmpeg'
 install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
 install_brew_dep 'stats' --cask
 install_brew_dep 'flycut' --cask
-install_brew_dep 'bartender'
-install_brew_dep 'whatsapp'
+install_brew_dep 'bartender' --cask
+install_brew_dep 'whatsapp' --cask
 
 # shiftit keeps getting broken on updates to MacOS, so I've switched over to
 # using Hammerspoon in combination with a hammerspoon-shiftit configuration.
