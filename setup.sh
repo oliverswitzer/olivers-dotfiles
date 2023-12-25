@@ -220,11 +220,13 @@ install_brew_dep 'krisp' --cask
 if [ "$skip_brew_deps" = false ]; then
   echo "Skipping installation of Mac App store dependencies... (skip-brew-deps also skips `mas` installs)"
   # Apps only installable from the App store
+  mas install 490179405  # Okta Verify
   mas install 937984704  # Amphetamine
   mas install 408981434  # iMovie
   mas install 424389933  # Final Cut Pro
   mas install 634148309  # Logic Pro
   mas install 1451685025 # WireGuard
+  mas install 975937182  # Fantastical
 fi
 
 # Oddly Good utilities
@@ -340,5 +342,5 @@ cat <<"EOF"
 ╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝
 EOF
 
-+echo "Please see this guide for remaining manual steps!"
-+open ./manual-install-notes.md
+echo "Please see this guide for remaining manual steps!"
+open ./manual-install-notes.md
