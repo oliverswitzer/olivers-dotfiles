@@ -278,7 +278,7 @@ install_brew_dep 'hammerspoon' --cask
 install_brew_dep 'flux' --cask
 install_brew_dep 'vlc' --cask
 install_brew_dep 'spotify' --cask
-install_breW_dep 'blackhole-2ch' --cask
+install_brew_dep 'blackhole-2ch' --cask
 
 # END: Brew Dependencies
 
