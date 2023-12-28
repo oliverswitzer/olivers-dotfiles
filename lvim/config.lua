@@ -10,6 +10,16 @@ lvim.colorscheme = "lunar"
 lvim.builtin.project.active = false
 lvim.builtin.nvimtree.setup.view = { side = "left", width = 30, adaptive_size = true }
 
+lvim.builtin.treesitter.incremental_selection = {
+  enable = true,
+  keymaps = {
+    init_selection = "gnn",
+    node_incremental = "grn",
+    scope_incremental = "grc",
+    node_decremental = "grm",
+  }
+}
+
 lvim.builtin.which_key.mappings["o"] = {
   name = "Oliver's Keys",
   g = {
@@ -64,6 +74,14 @@ lvim.keys.normal_mode["<C-h>"] = "<C-w>h"
 lvim.keys.normal_mode["<C-j>"] = "<C-w>j"
 lvim.keys.normal_mode["<C-k>"] = "<C-w>k"
 lvim.keys.normal_mode["<C-l>"] = "<C-w>l"
+
+-- Treesitter bindings
+-- NOTE: Unclear to me why lvim.keys... didn't work here. But it didn't, so just went with nvim_set_keymap instead.
+vim.api.nvim_set_keymap("n", "<S-Up>", "gnn", {})
+vim.api.nvim_set_keymap("n", "<S-Down>", "grm", {})
+vim.api.nvim_set_keymap("v", "<S-Up>", "grn", {})
+vim.api.nvim_set_keymap("v", "<S-Down>", "grm", {})
+
 
 --- LSPs
 -- Override settings in ~/.config/lvim/ftplugin/tailwindcss.lua
