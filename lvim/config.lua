@@ -175,6 +175,8 @@ lvim.plugins = {
   { "preservim/vimux" }
 }
 
+vim.api.nvim_command("set clipboard=")
+
 -- Codeium AI helper
 lvim.builtin.cmp.formatting.source_names["codeium"] = "(Codeium)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "codeium" })
