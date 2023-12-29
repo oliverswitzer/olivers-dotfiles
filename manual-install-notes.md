@@ -21,3 +21,7 @@ Hit "Set Sync Folder" and set it to the ./dash-docsets/Dash.dashsync folder in t
 ## Create initital tmux ressurect session
 
 From within a tmux session, hit Ctrl-B + Ctrl-s to save an initial tmux session. All future sessions with be automatically persisted.
+
+## Install DisplayLink Manager
+
+Download [here](https://www.synaptics.com/products/displaylink-graphics/downloads/macos-connectivity-1.10?filetype=exe)
