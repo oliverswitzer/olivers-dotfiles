@@ -2,6 +2,10 @@
 -- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
+--
+-- Helpful tools:
+-- * Print out a specific config, for example:
+--   print(vim.inspect(lvim.builtin.which_key.mappings))
 
 -- BEGIN: General LunarVim config
 lvim.version = "stable"
@@ -59,6 +63,8 @@ lvim.builtin.which_key.mappings["o"] = {
 
 
 -- BEGIN: keymaps
+lvim.keys.normal_mode["gt"] = "<cmd>BufferLineCycleNext<cr>"
+lvim.keys.normal_mode["gT"] = "<cmd>BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>" -- Easier saving with Ctrl + S
 
 -- Run test helpers - note that these commands come from vim-test
