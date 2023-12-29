@@ -3,13 +3,25 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
+-- BEGIN: General LunarVim config
 lvim.version = "stable"
 lvim.log.level = "info"
 lvim.format_on_save.enabled = true
 lvim.colorscheme = "lunar"
+-- END: General LunarVim config
+
+
+-- BEGIN: nvim-tree config
 lvim.builtin.project.active = false
 lvim.builtin.nvimtree.setup.view = { side = "left", width = 30, adaptive_size = true }
+local function open_nvim_tree()
+  require("nvim-tree.api").tree.open()
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+-- END: nvim-tree config
 
+
+-- BEGIN: treesitter config
 lvim.builtin.treesitter.incremental_selection = {
   enable = true,
   keymaps = {
@@ -19,7 +31,16 @@ lvim.builtin.treesitter.incremental_selection = {
     node_decremental = "grm",
   }
 }
+-- Treesitter bindings for incremental selection
+--   NOTE: Unclear to me why lvim.keys... didn't work here. But it didn't, so just went with nvim_set_keymap instead.
+vim.api.nvim_set_keymap("n", "<S-Up>", "gnn", {})
+vim.api.nvim_set_keymap("n", "<S-Down>", "grm", {})
+vim.api.nvim_set_keymap("v", "<S-Up>", "grn", {})
+vim.api.nvim_set_keymap("v", "<S-Down>", "grm", {})
+-- END: treesitter config
 
+
+-- BEGIN: whichkey config
 lvim.builtin.which_key.mappings["o"] = {
   name = "Oliver's Keys",
   g = {
@@ -34,13 +55,13 @@ lvim.builtin.which_key.mappings["o"] = {
   d = { "<cmd>:DBUI<CR>", "Query Database" },
   s = { "<cmd>:Telescope luasnip<CR>", "Search snippets for current buffer" }
 }
+-- END: whichkey config
 
---- KEYMAPS ---
 
--- Easier saving
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+-- BEGIN: keymaps
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>" -- Easier saving with Ctrl + S
 
--- Run test helpers
+-- Run test helpers - note that these commands come from vim-test
 vim.cmd('let test#strategy = "vimux"')
 lvim.keys.normal_mode["<C-t><C-n>"] = ":w <bar> TestNearest<cr>"
 lvim.keys.normal_mode["<C-t><C-f>"] = ":w <bar> TestFile<cr>"
@@ -74,20 +95,14 @@ lvim.keys.normal_mode["<C-h>"] = "<C-w>h"
 lvim.keys.normal_mode["<C-j>"] = "<C-w>j"
 lvim.keys.normal_mode["<C-k>"] = "<C-w>k"
 lvim.keys.normal_mode["<C-l>"] = "<C-w>l"
-
--- Treesitter bindings
--- NOTE: Unclear to me why lvim.keys... didn't work here. But it didn't, so just went with nvim_set_keymap instead.
-vim.api.nvim_set_keymap("n", "<S-Up>", "gnn", {})
-vim.api.nvim_set_keymap("n", "<S-Down>", "grm", {})
-vim.api.nvim_set_keymap("v", "<S-Up>", "grn", {})
-vim.api.nvim_set_keymap("v", "<S-Down>", "grm", {})
+-- END: keymaps
 
 
---- LSPs
+-- BEGIN: LSP config
 -- Override settings in ~/.config/lvim/ftplugin/tailwindcss.lua
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" })
 
---- Formatters
+-- Formatters
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
@@ -97,13 +112,14 @@ formatters.setup {
     -- these cannot contain whitespace
     -- options such as `--line-width 80` become either `{"--line-width", "80"}` or `{"--line-width=80"}`
     args = { "--print-width", "100" },
-    ---@usage only start in these filetypes, by default it will attach to all filetypes it supports
-    filetypes = { "typescript", "typescriptreact" },
+    --- @usage only start in these filetypes, by default it will attach to all filetypes it supports
+    -- filetypes = { "typescript", "typescriptreact" },
   },
 }
+-- END: LSP config
 
 
---- Oliver's plugins
+--- BEGIN: Plugins
 lvim.plugins = {
   {
     "aserowy/tmux.nvim",
@@ -174,9 +190,13 @@ lvim.plugins = {
   { "vim-test/vim-test" },
   { "preservim/vimux" }
 }
+-- END: Plugins
 
-vim.api.nvim_command("set clipboard=")
+
+-- BEGIN: Misc. vim config
+vim.api.nvim_command("set clipboard=") -- don't yank to system clipboard
 
 -- Codeium AI helper
 lvim.builtin.cmp.formatting.source_names["codeium"] = "(Codeium)"
-table.insert(lvim.builtin.cmp.sources, 1, { name = "codeium" })
+table.insert(lvim.builtin.cmp.sources, 1, { name = "codeium" }) -- show a nicer view of Codeium completions in a dropdown
+-- END: Misc. vim config
