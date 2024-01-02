@@ -236,6 +236,7 @@ install_brew_dep 'arduino' --cask
 install_brew_dep 'ultimaker-cura' --cask
 install_brew_dep 'anydesk' --cask
 install_brew_dep 'google-drive' --cask
+install_brew_dep 'autodesk-fusion360' --cask
 
 # Utilities
 install_brew_dep 'keycastr' --cask # Shows what modifier keys you're pressing
