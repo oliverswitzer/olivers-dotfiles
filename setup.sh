@@ -227,6 +227,7 @@ if [ "$skip_brew_deps" = false ]; then
   mas install 634148309  # Logic Pro
   mas install 1451685025 # WireGuard
   mas install 975937182  # Fantastical
+  mas install 668208984  # GIPHY Capture
 fi
 
 # Oddly Good utilities
