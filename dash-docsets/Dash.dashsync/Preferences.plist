@@ -163,7 +163,7 @@
 			<key>flop_phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:39Z</date>
+				<date>2024-01-02T16:32:59Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -387,7 +387,7 @@
 			<key>phoenix_live_view</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:38Z</date>
+				<date>2024-01-03T16:33:01Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -527,7 +527,7 @@
 			<key>ueberauth</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:36Z</date>
+				<date>2024-01-04T16:39:01Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -568,7 +568,22 @@
 			</dict>
 		</dict>
 		<key>uninstalled</key>
-		<dict/>
+		<dict>
+			<key>ash_oban</key>
+			<dict>
+				<key>date</key>
+				<date>2024-01-02T16:33:07Z</date>
+				<key>entry</key>
+				<dict>
+					<key>name</key>
+					<string>ash_oban</string>
+					<key>platform</key>
+					<string>hex</string>
+					<key>uniqueIdentifier</key>
+					<string>ash_oban</string>
+				</dict>
+			</dict>
+		</dict>
 	</dict>
 	<key>DHJavaRepo</key>
 	<dict>
@@ -613,7 +628,7 @@
 		<dict/>
 	</dict>
 	<key>DHWKWebViewTextSizeMultiplier</key>
-	<real>1.1499998569488525</real>
+	<real>1.0999999046325684</real>
 	<key>actuallyDarkWebView</key>
 	<true/>
 	<key>docsets</key>
