@@ -14,10 +14,16 @@ lvim.format_on_save.enabled = true
 lvim.colorscheme = "lunar"
 -- END: General LunarVim config
 
+-- BEGIN: General Vim config
+vim.cmd('set foldmethod=indent')
+vim.cmd('set nofoldenable')
+
+-- END: General Vim config
+
 
 -- BEGIN: nvim-tree config
 lvim.builtin.project.active = false
-lvim.builtin.nvimtree.setup.view = { side = "left", width = 30, adaptive_size = true }
+lvim.builtin.nvimtree.setup.view = { side = "left", width = 30 }
 local function open_nvim_tree()
   require("nvim-tree.api").tree.open()
 end
