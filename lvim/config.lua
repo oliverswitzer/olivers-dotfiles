@@ -27,6 +27,9 @@ lvim.builtin.nvimtree.setup.view = { side = "left", width = 30 }
 local function open_nvim_tree()
   require("nvim-tree.api").tree.open()
 end
+
+lvim.builtin.nvimtree.setup.filters.custom = {} -- do not filter out node_modules from file explorer!
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- END: nvim-tree config
 
