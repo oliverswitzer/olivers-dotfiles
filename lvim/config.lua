@@ -115,21 +115,30 @@ lvim.keys.normal_mode["<C-l>"] = "<C-w>l"
 
 -- BEGIN: LSP config
 -- Override settings in ~/.config/lvim/ftplugin/tailwindcss.lua
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss", "tsserver" })
 
--- Formatters
+-- Don't use tsserver formatter
+require("lvim.lsp.manager").setup("tsserver", {
+  -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
+})
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+  debug = true,
   { name = "black" },
   {
     name = "prettier",
     ---@usage arguments to pass to the formatter
     -- these cannot contain whitespace
     -- options such as `--line-width 80` become either `{"--line-width", "80"}` or `{"--line-width=80"}`
-    args = { "--print-width", "100" },
+    -- args = { "--print-width", "100" },
     --- @usage only start in these filetypes, by default it will attach to all filetypes it supports
     -- filetypes = { "typescript", "typescriptreact" },
-  },
+  }
 }
 -- END: LSP config
 
