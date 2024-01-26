@@ -17,7 +17,6 @@ lvim.colorscheme = "lunar"
 -- BEGIN: General Vim config
 vim.cmd('set foldmethod=indent')
 vim.cmd('set nofoldenable')
-
 -- END: General Vim config
 
 
@@ -67,6 +66,11 @@ lvim.builtin.which_key.mappings["o"] = {
   f = { "<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>", "Find all files" },
   d = { "<cmd>:DBUI<CR>", "Query Database" },
   s = { "<cmd>:Telescope luasnip<CR>", "Search snippets for current buffer" }
+}
+lvim.builtin.which_key.mappings["r"] = {
+  name = "Find and Replace All",
+  r = { "<Plug>CtrlSFPrompt -R", "Regex find and replace all (begin typing after running this key to start typing out the find query)" },
+  a = { "<Plug>CtrlSFPrompt", "Find and replace all (begin typing after running this key to start typing out the find query)" }
 }
 -- END: whichkey config
 
@@ -208,11 +212,13 @@ lvim.plugins = {
   {
     "brooth/far.vim",
   },
+  { "dyng/ctrlsf.vim" },
   {
     "machakann/vim-swap",
   },
   { "vim-test/vim-test" },
-  { "preservim/vimux" }
+  { "preservim/vimux" },
+  { "tpope/vim-surround" }
 }
 -- END: Plugins
 
