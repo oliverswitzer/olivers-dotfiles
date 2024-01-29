@@ -162,14 +162,9 @@ symlink_dotfile 'nvim' $HOME/.config
 
 install_brew_dep 'owenthereal/upterm/upterm'
 install_brew_dep 'ngrok'
-
-## Alternative to cat that displays syntax highlighting and git changes
-install_brew_dep 'bat'
-
-## Used by null-ls language server to format bash
-install_brew_dep 'shfmt'
-
-install_brew_dep 'derailed/k9s/k9s'
+install_brew_dep 'bat' # Alternative to cat that displays syntax highlighting and git changes
+install_brew_dep 'shfmt' # Used by null-ls language server to format bash
+install_brew_dep 'derailed/k9s/k9s' # kubernetes command line UI
 install_brew_dep 'ffmpeg'
 install_brew_dep 'tree'
 install_brew_dep 'flyctl'
