@@ -108,6 +108,7 @@ asdf plugin add java
 asdf plugin add helm
 asdf plugin add postgres
 asdf plugin add direnv
+asdf plugin add jq
 
 ## Python only necessary for a coc-snippet vim plugin...
 asdf plugin add python
@@ -172,7 +173,6 @@ install_brew_dep 'derailed/k9s/k9s'
 install_brew_dep 'ffmpeg'
 install_brew_dep 'tree'
 install_brew_dep 'flyctl'
-install_brew_dep 'jq'
 install_brew_dep 'gpg2'
 install_brew_dep 'the_silver_searcher'
 install_brew_dep 'ripgrep'
