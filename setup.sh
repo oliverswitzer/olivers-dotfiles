@@ -178,6 +178,9 @@ install_brew_dep 'tfk8s' # A tool for converting k8s manifests to terraform
 install_brew_dep 'terraformer'
 install_brew_dep 'mas' # Used to install apps only available in the app store
 install_brew_dep sijanc147/formulas/macprefs  # Used to back up MacOS settings
+install_brew_dep 'tldr'  # Better man pages. Usage: tldr <shell command>
+install_brew_dep 'autojump' # a faster way to navigate your filesystem. https://github.com/wting/autojump
+install_brew_dep --cask 'moom' # auto-configure window layouts when switching displays https://manytricks.com/moom/
 
 brew tap heroku/brew
 install_brew_dep 'heroku'
