@@ -135,7 +135,7 @@
 			<key>floki</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:39Z</date>
+				<date>2024-01-29T04:28:56Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -149,7 +149,7 @@
 			<key>flop</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:41Z</date>
+				<date>2024-01-16T15:59:42Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -163,7 +163,7 @@
 			<key>flop_phoenix</key>
 			<dict>
 				<key>date</key>
-				<date>2024-01-02T16:32:59Z</date>
+				<date>2024-01-16T15:59:41Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -289,7 +289,7 @@
 			<key>oban</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:28Z</date>
+				<date>2024-01-24T15:35:23Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -326,6 +326,20 @@
 					<string>hex</string>
 					<key>uniqueIdentifier</key>
 					<string>opentelemetry_api</string>
+				</dict>
+			</dict>
+			<key>patch</key>
+			<dict>
+				<key>date</key>
+				<date>2024-01-22T16:59:50Z</date>
+				<key>entry</key>
+				<dict>
+					<key>name</key>
+					<string>patch</string>
+					<key>platform</key>
+					<string>hex</string>
+					<key>uniqueIdentifier</key>
+					<string>patch</string>
 				</dict>
 			</dict>
 			<key>phoenix</key>
@@ -401,7 +415,7 @@
 			<key>plug</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:37Z</date>
+				<date>2024-01-16T15:59:42Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
@@ -485,7 +499,7 @@
 			<key>telemetry_metrics</key>
 			<dict>
 				<key>date</key>
-				<date>2023-12-22T04:19:28Z</date>
+				<date>2024-01-11T16:27:52Z</date>
 				<key>entry</key>
 				<dict>
 					<key>name</key>
