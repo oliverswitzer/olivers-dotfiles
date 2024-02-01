@@ -72,6 +72,12 @@ lvim.builtin.which_key.mappings["r"] = {
   r = { "<Plug>CtrlSFPrompt -R", "Regex find and replace all (begin typing after running this key to start typing out the find query)" },
   a = { "<Plug>CtrlSFPrompt", "Find and replace all (begin typing after running this key to start typing out the find query)" }
 }
+lvim.builtin.which_key.mappings["lu"] = {
+  "<cmd>:Telescope lsp_references<CR>", "Find usage of symbol"
+}
+lvim.builtin.which_key.mappings["ld"] = {
+  "<cmd>:Telescope lsp_definitions<CR>", "Find definition of symbol"
+}
 -- END: whichkey config
 
 
