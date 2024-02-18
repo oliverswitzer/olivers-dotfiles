@@ -25,3 +25,7 @@ From within a tmux session, hit Ctrl-B + Ctrl-s to save an initial tmux session.
 ## Install DisplayLink Manager
 
 Download [here](https://www.synaptics.com/products/displaylink-graphics/downloads/macos-connectivity-1.10?filetype=exe)
+
+## Install Epson Printer Scan software
+
+Support Firmware is [here](https://ftp.epson.com/drivers/XP6000_EScan2_64143_NA.dmg)
