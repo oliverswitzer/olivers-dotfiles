@@ -161,6 +161,11 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 alias k="kubectl"
 
+# LLMs
+alias clc="claude"
+alias clcd="claude --dangerously-skip-permissions"
+alias clpm="claude --agent xp-product-manager --dangerously-skip-permissions"
+
 # Editor
 alias vim="lvim"
 alias vi="lvim"
@@ -169,8 +174,6 @@ alias watch="watch "
 alias tat="tmux attach -t"
 alias tnew"tmux new -s"
 
-# Kohort
-alias bc="./run-test ./bin/checks.sh"
 alias dcu="docker-compose up"
 alias dcr="docker-compose restart"
 alias dcd="docker-compose down"
@@ -180,6 +183,7 @@ alias ghprev="gh pr create --title 'Preview' --body 'Preview' --web"
 alias sshunsafe="ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\""
 alias clearswap="sudo pkill -HUP -u _windowserver"
 alias kctx="kubectl config current-context"
+alias sshpi="ssh oliverswitzer@raspberrypi.local"
 
 unfunction work_in_progress
 
@@ -195,17 +199,31 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 . ~/.asdf/plugins/java/set-java-home.zsh
 export PATH=$PATH:/Users/oliverswitzer/.local/bin
+export PATH="$HOME/workspace/olivers-dotfiles/bin:$PATH"
 export PATH=$PATH:/Applications/IntelliJ\ IDEA.app/Contents/MacOS
 
 export EDITOR=nvim
 export KUBE_EDITOR=nvim
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-# Omni-related
-export AWS_PROFILE="AdministratorAccess-764897506820"
-export AWS_DEFAULT_REGION=us-east-1
+# Added by Windsurf
+export PATH="/Users/oliverswitzer/.codeium/windsurf/bin:$PATH"
 
-# alias jacc='ssh acc-jump-box -N -L 15432:acc-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
-# alias jprod='ssh prod-jump-box -N -L 15433:prd-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
-alias jprod='ssh ec2-user@omni-prd-gateway -N -L 15433:prd-tms-pg.cabowk7ze3fb.us-east-1.rds.amazonaws.com:5432'
+# bun completions
+[ -s "/Users/oliverswitzer/.bun/_bun" ] && source "/Users/oliverswitzer/.bun/_bun"
 
-alias omnistart="dcu -d && ./bin/setup-local-worldtrak-replication.sh && mix ecto.setup && mix omni.import_airtrak && mix phx.server"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

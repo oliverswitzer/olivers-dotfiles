@@ -1,0 +1,215 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ao-new-project — scaffold a new project for Agent Orchestrator
+#
+# Creates:
+#   1. agent-orchestrator.yaml in the project directory
+#   2. Entry in ~/.agent-orchestrator/config.yaml
+#   3. (Optional) Linear project via API
+
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  cat <<EOF
+Usage: ao-new-project
+
+Scaffold a new project for Agent Orchestrator.
+
+Creates:
+  1. agent-orchestrator.yaml in the project directory
+  2. Entry in ~/.agent-orchestrator/config.yaml
+  3. (Optional) Linear project via API
+
+The script prompts interactively for project path, GitHub repo,
+session prefix, and default branch. All values have sensible defaults.
+
+Options:
+  -h, --help    Show this help message
+
+Environment:
+  LINEAR_API_KEY    If set, used for Linear project creation.
+                    Otherwise checks ~/.envrc or prompts.
+EOF
+  exit 0
+fi
+
+AO_CONFIG="$HOME/.agent-orchestrator/config.yaml"
+LINEAR_TEAM_ID="0a4ce72a-2ad7-4404-b7ed-a2f5dec76ad0"
+
+# ── Gather inputs ───────────────────────────────────────────────────
+
+read -rp "Project path (e.g. ../my-app, ~/workspace/my-app): " raw_path
+raw_path="${raw_path/#\~/$HOME}"
+project_path="$(cd "$raw_path" 2>/dev/null && pwd)" || { echo "Error: $raw_path does not exist"; exit 1; }
+
+project_name=$(basename "$project_path")
+read -rp "Project display name [$project_name]: " display_name
+display_name="${display_name:-$project_name}"
+
+read -rp "GitHub owner/repo (e.g. oliverswitzer/$project_name): " github_repo
+github_repo="${github_repo:-oliverswitzer/$project_name}"
+owner=$(echo "$github_repo" | cut -d/ -f1)
+repo=$(echo "$github_repo" | cut -d/ -f2)
+
+read -rp "Session prefix (short, e.g. 3-4 chars) [$project_name]: " session_prefix
+session_prefix="${session_prefix:-$project_name}"
+
+read -rp "Default branch [main]: " default_branch
+default_branch="${default_branch:-main}"
+
+echo ""
+echo "Linear project setup:"
+echo "  1) Create a new Linear project"
+echo "  2) Link an existing Linear project (paste project ID)"
+echo "  3) Skip"
+read -rp "Choice [3]: " linear_choice
+linear_choice="${linear_choice:-3}"
+
+linear_project_id=""
+if [ "$linear_choice" = "2" ]; then
+  read -rp "Linear project ID: " linear_project_id
+fi
+
+# Generate a random storage key (12 hex chars, like existing projects)
+storage_key=$(openssl rand -hex 6)
+
+echo ""
+echo "── Summary ──────────────────────────────────────────"
+echo "  Project:    $display_name"
+echo "  Path:       $project_path"
+echo "  Repo:       $github_repo"
+echo "  Prefix:     $session_prefix"
+echo "  Branch:     $default_branch"
+linear_summary="skip"
+if [ "$linear_choice" = "1" ]; then linear_summary="create new"; fi
+if [ "$linear_choice" = "2" ]; then linear_summary="link $linear_project_id"; fi
+echo "  Linear:     $linear_summary"
+echo "────────────────────────────────────────────────────"
+echo ""
+read -rp "Proceed? [Y/n]: " confirm
+if [[ "${confirm:-Y}" =~ ^[Nn] ]]; then
+  echo "Aborted."
+  exit 0
+fi
+
+# ── 1. Write agent-orchestrator.yaml ────────────────────────────────
+
+ao_yaml="$project_path/agent-orchestrator.yaml"
+
+if [ -f "$ao_yaml" ]; then
+  echo "⚠️  $ao_yaml already exists, skipping"
+else
+  cat > "$ao_yaml" <<EOF
+tracker:
+  plugin: linear
+  teamId: "$LINEAR_TEAM_ID"
+scm:
+  plugin: github
+agentConfig:
+  permissions: skip
+symlinks:
+  - .env.local
+EOF
+  echo "✅ Created $ao_yaml"
+fi
+
+# ── 2. Add to ~/.agent-orchestrator/config.yaml ─────────────────────
+
+if ! [ -f "$AO_CONFIG" ]; then
+  echo "Error: $AO_CONFIG not found"
+  exit 1
+fi
+
+already_exists=$(python3 -c "
+import yaml, sys
+with open('$AO_CONFIG') as f:
+    config = yaml.safe_load(f)
+print('yes' if '$project_name' in config.get('projects', {}) else 'no')
+")
+
+if [ "$already_exists" = "yes" ]; then
+  echo "⚠️  Project '$project_name' already exists in $AO_CONFIG, skipping"
+else
+  python3 <<PYEOF
+import yaml
+
+config_path = "$AO_CONFIG"
+with open(config_path) as f:
+    config = yaml.safe_load(f)
+
+existing_projects = config.get("projects", {})
+new_project = {
+    "$project_name": {
+        "projectId": "$project_name",
+        "path": "$project_path",
+        "storageKey": "$storage_key",
+        "repo": {
+            "owner": "$owner",
+            "name": "$repo",
+            "platform": "github",
+            "originUrl": "https://github.com/$github_repo",
+        },
+        "defaultBranch": "$default_branch",
+        "displayName": "$display_name",
+        "sessionPrefix": "$session_prefix",
+    }
+}
+new_project.update(existing_projects)
+config["projects"] = new_project
+
+with open(config_path, "w") as f:
+    yaml.dump(config, f, default_flow_style=False, sort_keys=False)
+PYEOF
+  echo "✅ Added '$project_name' to $AO_CONFIG"
+fi
+
+# ── 3. Linear project ──────────────────────────────────────────────
+
+if [ "$linear_choice" = "1" ]; then
+  if [ -z "${LINEAR_API_KEY:-}" ]; then
+    echo "LINEAR_API_KEY not set. Checking ~/.envrc..."
+    if [ -f "$HOME/.envrc" ]; then
+      linear_key=$(grep LINEAR_API_KEY "$HOME/.envrc" 2>/dev/null | cut -d= -f2 | tr -d '"' | tr -d "'" | xargs)
+    fi
+    if [ -z "${linear_key:-}" ]; then
+      read -rp "Linear API key: " linear_key
+    fi
+  else
+    linear_key="$LINEAR_API_KEY"
+  fi
+
+  response=$(curl -s -X POST https://api.linear.app/graphql \
+    -H "Content-Type: application/json" \
+    -H "Authorization: $linear_key" \
+    -d "{\"query\": \"mutation { projectCreate(input: { name: \\\"$display_name\\\", teamIds: [\\\"$LINEAR_TEAM_ID\\\"] }) { success project { id name url } } }\"}")
+
+  success=$(echo "$response" | python3 -c "import sys,json; print(json.load(sys.stdin)['data']['projectCreate']['success'])" 2>/dev/null || echo "False")
+
+  if [ "$success" = "True" ]; then
+    project_url=$(echo "$response" | python3 -c "import sys,json; print(json.load(sys.stdin)['data']['projectCreate']['project']['url'])" 2>/dev/null)
+    linear_project_id=$(echo "$response" | python3 -c "import sys,json; print(json.load(sys.stdin)['data']['projectCreate']['project']['id'])" 2>/dev/null)
+    echo "✅ Created Linear project: $project_url"
+    echo "   Project ID: $linear_project_id"
+  else
+    echo "❌ Failed to create Linear project:"
+    echo "$response" | python3 -m json.tool 2>/dev/null || echo "$response"
+  fi
+fi
+
+# If we have a Linear project ID (created or linked), append to CLAUDE.md
+if [ -n "$linear_project_id" ]; then
+  claude_md="$project_path/CLAUDE.md"
+  if [ ! -f "$claude_md" ]; then
+    touch "$claude_md"
+    echo "✅ Created $claude_md"
+  fi
+  cat >> "$claude_md" <<LINEEOF
+
+## Linear project
+
+All issues for this repo belong to the **$display_name** project (ID: \`$linear_project_id\`) in the **IDE** team (\`$LINEAR_TEAM_ID\`). When creating issues, always set \`projectId\` to the $display_name project. Never create issues without a project assignment.
+LINEEOF
+  echo "✅ Appended Linear project info to $claude_md"
+fi
+
+echo ""
+echo "🎉 Done! You can now run: ao start $project_name"
