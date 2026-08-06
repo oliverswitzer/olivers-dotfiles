@@ -64,4 +64,7 @@ wtrm() {
 
 # wtls — list all worktrees for the current repo (branch + commit).
 alias wtls='git worktree list'
+
+# wthelp — print this command summary (reads the "# wt… —" lines below).
+alias wthelp="grep -E '^# wt' ~/.config/zsh/rc.d/worktrees.zsh | sed 's/^# //'"
 # ─────────────────────────────────────────────────────────────────
