@@ -7,6 +7,8 @@
 #
 # NOTE: wt/wtcd must be sourced (not bin/ scripts) because they cd the
 # current shell — a child process can't change its parent's directory.
+# NOTE: never name a local var `path` in zsh — it's tied to $PATH and
+# would blank out PATH inside the function. We use `dir` instead.
 WT_BASE="$HOME/.config/superpowers/worktrees"
 
 # wt <branch> — create (or reuse) a worktree and cd into it.
@@ -18,30 +20,30 @@ WT_BASE="$HOME/.config/superpowers/worktrees"
 wt() {
   local branch="$1"
   [ -z "$branch" ] && { echo "usage: wt <branch>"; return 1; }
-  local root proj path
+  local root proj dir
   root=$(git rev-parse --show-toplevel) || return 1
   proj=$(basename "$root")
-  path="$WT_BASE/$proj/$branch"
-  if [ ! -d "$path" ]; then
+  dir="$WT_BASE/$proj/$branch"
+  if [ ! -d "$dir" ]; then
     if git show-ref --verify --quiet "refs/heads/$branch" || \
        git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
-      git worktree add "$path" "$branch"     # existing branch
+      git worktree add "$dir" "$branch"     # existing branch
     else
-      git worktree add "$path" -b "$branch"  # new branch
+      git worktree add "$dir" -b "$branch"  # new branch
     fi
   fi
-  [ -d "$path/server" ] && cd "$path/server" || cd "$path"
+  [ -d "$dir/server" ] && cd "$dir/server" || cd "$dir"
 }
 
 # wtcd <branch> — cd into an EXISTING worktree (creates nothing).
 #   e.g.  wtcd ge-1206-fix-ci-i18n-mismatch-issue
 wtcd() {
   [ -z "$1" ] && { echo "usage: wtcd <branch>"; return 1; }
-  local root proj path
+  local root proj dir
   root=$(git rev-parse --show-toplevel) || return 1
   proj=$(basename "$root")
-  path="$WT_BASE/$proj/$1"
-  [ -d "$path/server" ] && cd "$path/server" || cd "$path"
+  dir="$WT_BASE/$proj/$1"
+  [ -d "$dir/server" ] && cd "$dir/server" || cd "$dir"
 }
 
 # wtrm <branch> — remove a worktree; the BRANCH is kept.
@@ -53,11 +55,11 @@ wtcd() {
 wtrm() {
   local branch="$1"
   [ -z "$branch" ] && { echo "usage: wtrm <branch>"; return 1; }
-  local root proj path
+  local root proj dir
   root=$(git rev-parse --show-toplevel) || return 1
   proj=$(basename "$root")
-  path="$WT_BASE/$proj/$branch"
-  git worktree remove "$path" && echo "Removed $path"
+  dir="$WT_BASE/$proj/$branch"
+  git worktree remove "$dir" && echo "Removed $dir"
   git worktree prune
   echo "Branch '$branch' kept. Delete with: git branch -d $branch"
 }
