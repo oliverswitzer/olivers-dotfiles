@@ -137,6 +137,11 @@ symlink_dotfile '.p10k.zsh' $HOME
 mkdir -p $HOME/.config/karabiner
 symlink_dotfile 'karabiner.json' $HOME/.config/karabiner
 
+# Sourced zsh helper functions (loaded by the rc.d loop in .zshrc).
+# rm first to avoid symlink_dotfile's directory-nesting bug on re-runs (see .hammerspoon below).
+rm -rf ~/.config/zsh{,.bak}
+symlink_dotfile 'zsh' $HOME/.config
+
 # A hack until I figure out why the symlink_dotfile function is broken for directories
 rm -rf ~/.hammerspoon{,.bak}
 symlink_dotfile '.hammerspoon' $HOME

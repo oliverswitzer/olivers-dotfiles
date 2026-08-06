@@ -227,3 +227,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Source modular zsh helper functions (see ~/.config/zsh/rc.d/)
+for f in "$HOME/.config/zsh/rc.d/"*.zsh(N); do source "$f"; done
