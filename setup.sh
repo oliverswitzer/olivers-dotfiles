@@ -200,6 +200,7 @@ install_brew_dep 'cursor' --cask
 install_brew_dep 'docker' --cask
 install_brew_dep 'google-chrome' --cask
 install_brew_dep 'firefox' --cask
+install_brew_dep 'orbstack' --cask
 
 # Dash v6 and above ask for a subscription!
 brew tap homebrew/cask-versions # Tap is necessary to download older version of Dash (dash5)
