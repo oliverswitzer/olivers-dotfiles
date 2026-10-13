@@ -31,5 +31,5 @@ echo
 echo "Reload (run in your own Terminal):"
 for p in "$HERE"/agents/*.plist; do
   l="$(basename "$p" .plist)"
-  echo "  launchctl bootout gui/\$(id -u)/$l 2>/dev/null; launchctl bootstrap gui/\$(id -u) ~/Library/LaunchAgents/$l.plist"
+  echo "  launchctl bootout gui/\$(id -u)/$l 2>/dev/null; sleep 2; launchctl bootstrap gui/\$(id -u) ~/Library/LaunchAgents/$l.plist"
 done

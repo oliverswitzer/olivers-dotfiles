@@ -63,6 +63,7 @@ inside its gateway, so run them yourself in Terminal:
 ```
 for l in com.pr-review-reports.server com.reddit-bot.discord com.travel-planning.serve; do
   launchctl bootout gui/$(id -u)/$l 2>/dev/null
+  sleep 2   # bootout is async; bootstrapping too soon fails silently
   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/$l.plist
 done
 ```
