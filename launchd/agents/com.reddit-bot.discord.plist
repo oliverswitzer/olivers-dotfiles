@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/bin:/bin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.reddit-bot.discord</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/clawliver/bin/t7run</string>
+		<string>/bin/bash</string>
+		<string>-c</string>
+		<string>cd /Users/clawliver/workspace/reddit-bot &amp;&amp; exec /bin/bash ./discord_bot_start.sh</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/Users/clawliver/Library/Logs/com.reddit-bot.discord.err.log</string>
+	<key>StandardOutPath</key>
+	<string>/Users/clawliver/Library/Logs/com.reddit-bot.discord.out.log</string>
+	<key>ThrottleInterval</key>
+	<integer>30</integer>
+</dict>
+</plist>

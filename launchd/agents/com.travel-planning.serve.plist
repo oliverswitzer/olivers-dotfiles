@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.travel-planning.serve</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/clawliver/bin/t7run</string>
+		<string>/bin/bash</string>
+		<string>-c</string>
+		<string>cd /Users/clawliver/workspace/olivers-travel-planning &amp;&amp; exec /usr/local/bin/python3 bin/serve.py</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/Users/clawliver/Library/Logs/com.travel-planning.serve.err.log</string>
+	<key>StandardOutPath</key>
+	<string>/Users/clawliver/Library/Logs/com.travel-planning.serve.out.log</string>
+	<key>ThrottleInterval</key>
+	<integer>10</integer>
+</dict>
+</plist>
