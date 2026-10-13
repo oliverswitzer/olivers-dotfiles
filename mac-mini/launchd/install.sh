@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build + sign t7run into ~/bin, and copy agent plists into ~/Library/LaunchAgents.
-# Safe to re-run. See launchd/README.md.
+# Safe to re-run. Normally invoked by mac-mini/setup.sh. See mac-mini/README.md.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 BIN="$HOME/bin/t7run"

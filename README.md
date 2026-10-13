@@ -7,3 +7,7 @@ Simple. Just run `sudo ./setup.sh` and all dotfiles will be symlinked to their n
 To take a new backup of Mac system preferences, run `./run-macos-prefs-backup.sh`.
 
 This will create a folder in your home directory for a backup of your system preferences that you can then choose to sync with Google Drive.
+
+## Mac mini
+
+Mac-mini-only setup (LaunchAgents, the `t7run` launcher for the external T7 drive) lives in [`mac-mini/`](mac-mini/README.md). Run `./mac-mini/setup.sh` on the Mac mini only, never on a laptop.
